@@ -1,0 +1,332 @@
+# Client
+extends RefCounted
+
+signal on_progress(progress: float, total_size: int, uploaded_size: int)
+
+var _chunk_size = 5 * 1024 * 1024
+var _self_signed = false
+var _endpoint = 'https://cloud.appwrite.io/v1'
+var _global_headers = {
+    'content-type': '',
+    'user-agent': 'AppwriteGDScriptSDK/0.0.0 (Server:' + Engine.get_version_info().string + '; ' + OS.get_name() + ')',
+    'x-sdk-name': 'NAME',
+    'x-sdk-platform': '',
+    'x-sdk-language': 'gdscript',
+    'x-sdk-version': '0.0.0',
+    'X-Appwrite-Response-Format': '1.9.5',
+}
+
+func set_self_signed(status: bool = true) -> RefCounted:
+    _self_signed = status
+    return self
+
+func set_endpoint(endpoint: String) -> Variant:
+    if not _is_valid_endpoint(endpoint):
+        push_error("Invalid endpoint URL: " + endpoint)
+        return AppwriteException.new("Invalid endpoint URL: " + endpoint, 0, "invalid_endpoint", "Invalid endpoint URL: " + endpoint) 
+
+    _endpoint = endpoint.trim_suffix("/")
+    return self
+
+func _is_valid_endpoint(url: String) -> bool:
+    var regex := RegEx.new()
+    regex.compile("^https?://.+")
+    return regex.search(url) != null
+
+func add_header(key: String, value: String) -> RefCounted:
+    _global_headers[key.to_lower()] = value
+    return self
+
+func get_headers() -> Dictionary:
+    return _global_headers.duplicate()
+
+func set_project(value: String) -> RefCounted:
+    _global_headers['x-appwrite-project'] = value
+    return self
+func set_key(value: String) -> RefCounted:
+    _global_headers['x-appwrite-key'] = value
+    return self
+func set_jwt(value: String) -> RefCounted:
+    _global_headers['x-appwrite-jwt'] = value
+    return self
+func set_locale(value: String) -> RefCounted:
+    _global_headers['x-appwrite-locale'] = value
+    return self
+func set_mode(value: String) -> RefCounted:
+    _global_headers['x-appwrite-mode'] = value
+    return self
+func set_cookie(value: String) -> RefCounted:
+    _global_headers['cookie'] = value
+    return self
+func set_session(value: String) -> RefCounted:
+    _global_headers['x-appwrite-session'] = value
+    return self
+func set_dev_key(value: String) -> RefCounted:
+    _global_headers['x-appwrite-dev-key'] = value
+    return self
+func set_impersonate_user_id(value: String) -> RefCounted:
+    _global_headers['x-appwrite-impersonate-user-id'] = value
+    return self
+func set_impersonate_user_email(value: String) -> RefCounted:
+    _global_headers['x-appwrite-impersonate-user-email'] = value
+    return self
+func set_impersonate_user_phone(value: String) -> RefCounted:
+    _global_headers['x-appwrite-impersonate-user-phone'] = value
+    return self
+func set_platform(value: String) -> RefCounted:
+    _global_headers['x-appwrite-platform'] = value
+    return self
+
+func _http_request(method: String, path: String = "", headers: Dictionary = {}, params: Dictionary = {}, max_redirects: int = 8) -> Variant:
+    if not _ensure_configured():
+        return {"statusCode": 0, "error": "Missing/wrong configuration. Please check logs for more info"}
+
+    # Merge headers
+    var combined_headers := _global_headers.duplicate()
+    for key in headers:
+        combined_headers[key.to_lower()] = headers[key]
+
+    # Choose http method constant
+    var http_method: int
+    match method.to_upper():
+        "POST":   http_method = HTTPClient.METHOD_POST
+        "PUT":    http_method = HTTPClient.METHOD_PUT
+        "PATCH":  http_method = HTTPClient.METHOD_PATCH
+        "DELETE": http_method = HTTPClient.METHOD_DELETE
+        _:        http_method = HTTPClient.METHOD_GET
+    
+    # Build url
+    var uri := _endpoint.trim_suffix("/")
+    var request_path := path
+    var body := PackedByteArray()
+    
+    # Prepare body and path
+    if http_method == HTTPClient.METHOD_GET:
+        if not params.is_empty():
+            request_path += "?" + _query_string_from_dict(params)
+    else:
+        var has_files := false
+        var large_file_key := ""
+        for key in params:
+            if params[key] is AppwriteInputFile:
+                has_files = true
+                if params[key].get_size() > _chunk_size:
+                    large_file_key = key
+                break
+        
+        if large_file_key != "" and not headers.has("content-range"):
+            return await _call_chunked(method, path, headers, params, large_file_key)
+
+        if has_files:
+            var boundary := "Boundary-%x" % Time.get_ticks_msec()
+            combined_headers["content-type"] = "multipart/form-data; boundary=" + boundary
+            body = _build_multipart(params, boundary)
+        else:
+            var body_str := JSON.stringify(_serialize(params))
+            body = body_str.to_utf8_buffer()
+            combined_headers["content-type"] = "application/json"
+        
+        combined_headers["content-length"] = str(body.size())
+    
+    # Build header array
+    var header_list := PackedStringArray()
+    for key in combined_headers:
+        if combined_headers[key] != "":
+            header_list.append(key + ": " + str(combined_headers[key]))
+    
+    # Create HTTPRequest instance
+    var http := HTTPRequest.new()
+    var tls_options := TLSOptions.client_unsafe() if _self_signed else TLSOptions.client()
+    http.max_redirects = max_redirects
+    http.set_tls_options(tls_options)
+    Engine.get_main_loop().root.add_child.call_deferred(http)
+    await http.tree_entered
+
+    # Make request
+    var err = http.request_raw(uri + request_path, header_list, http_method, body)
+    if err != OK:
+        http.queue_free()
+        return {"statusCode": 0, "error": "Request failed: " + error_string(err)}
+    
+    # Wait for response and clean node from tree on completion
+    var response = await http.request_completed
+    http.queue_free()
+
+    return response
+   
+func redirect(method: String, path: String = "", headers: Dictionary = {}, params: Dictionary = {}) -> Variant:
+    var response = await _http_request(method, path, headers, params, 0)
+
+    if response is Dictionary:
+        return response 
+
+    var request_result: int = response[0]
+    var response_code: int = response[1]
+    
+    if response_code == 301 or response_code == 302:
+        for header in response[2]:
+            if header.to_lower().begins_with("location:"):
+                return { "statusCode": 200, "body": header.substr(9).strip_edges() }
+
+    if request_result != HTTPRequest.RESULT_SUCCESS:
+        return { "statusCode": 0, "error": "HTTP Request Error: " + _get_request_error_message(request_result) }
+
+    var response_text := (response[3] as PackedByteArray).get_string_from_utf8()
+
+    var json := JSON.new()
+    if json.parse(response_text) == OK:
+        return {"statusCode": response_code, "body": json.data}
+
+    return {"statusCode": response_code, "body": response_text}
+
+func call_api(method: String, path: String = "", headers: Dictionary = {}, params: Dictionary = {}) -> Dictionary:
+    var response = await _http_request(method, path, headers, params)
+    
+    if response is Dictionary:
+        return response 
+
+    var request_result: int = response[0]
+    var response_code: int = response[1]
+    var response_body: PackedByteArray = response[3]
+    
+    if request_result != HTTPRequest.RESULT_SUCCESS:
+        return {"statusCode": 0, "error": "HTTP Request Error: " + _get_request_error_message(request_result)}
+
+    var response_text := response_body.get_string_from_utf8()
+
+    var json := JSON.new()
+    if json.parse(response_text) == OK:
+        return {"statusCode": response_code, "body": json.data}
+
+    return {"statusCode": response_code, "body": response_text}
+
+func _get_request_error_message(request_result: int) -> String:
+    match request_result:
+        HTTPRequest.RESULT_CHUNKED_BODY_SIZE_MISMATCH: return "Chunked body size mismatch"
+        HTTPRequest.RESULT_CANT_CONNECT: return "Cannot connect to server"
+        HTTPRequest.RESULT_CANT_RESOLVE: return "Cannot resolve hostname"
+        HTTPRequest.RESULT_CONNECTION_ERROR: return "Connection error"
+        HTTPRequest.RESULT_TLS_HANDSHAKE_ERROR: return "TLS handshake error"
+        HTTPRequest.RESULT_NO_RESPONSE: return "No response from server"
+        HTTPRequest.RESULT_BODY_SIZE_LIMIT_EXCEEDED: return "Body size limit exceeded"
+        HTTPRequest.RESULT_BODY_DECOMPRESS_FAILED: return "Body decompression failed"
+        HTTPRequest.RESULT_REQUEST_FAILED: return "Request failed"
+        HTTPRequest.RESULT_DOWNLOAD_FILE_CANT_OPEN: return "Cannot open download file"
+        HTTPRequest.RESULT_DOWNLOAD_FILE_WRITE_ERROR: return "Download file write error"
+        HTTPRequest.RESULT_REDIRECT_LIMIT_REACHED: return "Redirect limit reached"
+        HTTPRequest.RESULT_TIMEOUT: return "Request timeout"
+        _: return "Unknown error (" + str(request_result) + ")"
+
+func _build_multipart(params: Dictionary, boundary: String) -> PackedByteArray:
+    var body := PackedByteArray()
+    for key in params:
+        var value = params[key]
+        if value == null: continue
+        
+        if value is AppwriteInputFile:
+            var data = value.get_data()
+            if data.is_empty():
+                push_warning("AppwriteInputFile contains no data")
+                continue
+            body.append_array(("--" + boundary + "\r\n").to_utf8_buffer())
+            body.append_array(("Content-Disposition: form-data; name=\"%s\"; filename=\"%s\"\r\n" % [key, value.filename]).to_utf8_buffer())
+            var c_type = value.content_type if value.content_type != "" else "application/octet-stream"
+            body.append_array(("Content-Type: %s\r\n\r\n" % c_type).to_utf8_buffer())
+            body.append_array(data)
+            body.append_array(("\r\n").to_utf8_buffer())
+        elif value is Array:
+            for item in value:
+                body.append_array(("--" + boundary + "\r\n").to_utf8_buffer())
+                body.append_array(("Content-Disposition: form-data; name=\"%s[]\"\r\n\r\n" % key).to_utf8_buffer())
+                body.append_array((JSON.stringify(_serialize(item))).to_utf8_buffer())
+                body.append_array(("\r\n").to_utf8_buffer())
+        else:
+            body.append_array(("--" + boundary + "\r\n").to_utf8_buffer())
+            body.append_array(("Content-Disposition: form-data; name=\"%s\"\r\n\r\n" % key).to_utf8_buffer())
+            body.append_array((JSON.stringify(_serialize(value))).to_utf8_buffer())
+            body.append_array(("\r\n").to_utf8_buffer())
+    
+    body.append_array(("--" + boundary + "--\r\n").to_utf8_buffer())
+    return body
+
+func _ensure_configured() -> bool:
+    if _endpoint == "":
+        push_warning("Appwrite: endpoint is missing. Use set_endpoint or .env.")
+        return false
+    if not _global_headers.has("x-appwrite-project"):
+        push_warning("Appwrite: project id is missing. Use set_project or .env.")
+        return false
+    return true
+
+func _call_chunked(method: String, path: String, headers: Dictionary, params: Dictionary, file_key: String) -> Dictionary:
+    var file: AppwriteInputFile = params[file_key]
+    var size = file.get_size()
+    var start = 0
+    var response := {}
+    
+    var headers_copy = headers.duplicate()
+    var params_copy = params.duplicate()
+
+    while start < size:
+        var end = min(start + _chunk_size, size)
+        headers_copy["content-range"] = "bytes %d-%d/%d" % [start, end - 1, size]
+        
+        var chunk_data = file.get_chunk(start, end - start)
+        var chunk_file = AppwriteInputFile.from_bytes(chunk_data, file.filename)
+        chunk_file.content_type = file.content_type
+        
+        params_copy[file_key] = chunk_file
+        
+        response = await call_api(method, path, headers_copy, params_copy)
+        
+        if response.has("body") and response["body"] is Dictionary and response["body"].has("$id"):
+            headers_copy["x-appwrite-id"] = response["body"]["$id"]
+            
+        if response.get("statusCode", 0) >= 400:
+            return response
+        
+        start = end
+        on_progress.emit((float(start) / size) * 100.0, size, start)
+    return response
+
+func _query_string_from_dict(p_dict: Dictionary) -> String:
+    var query := ""
+    for key in p_dict.keys():
+        var value = p_dict[key]
+        var base_key := str(key)
+        match typeof(value):
+            TYPE_ARRAY:
+                # Always use 'key[]' syntax for arrays, even with a single element
+                var encoded_key := (base_key + "[]").uri_encode()
+                for element in value:
+                    query += "&" + encoded_key + "=" + str(element).uri_encode()
+            TYPE_NIL:
+                query += "&" + base_key.uri_encode()
+            _:
+                query += "&" + base_key.uri_encode() + "=" + str(value).uri_encode()
+    if query.length() > 0:
+        query = query.substr(1)
+    return query
+
+func _serialize(value):
+    match typeof(value):
+        TYPE_ARRAY:
+            var arr := []
+            for item in value:
+                arr.append(_serialize(item))
+            return arr
+
+        TYPE_DICTIONARY:
+            var dict := {}
+            for key in value:
+                dict[key] = _serialize(value[key])
+            return dict
+
+        TYPE_OBJECT:
+            if value != null and value.has_method("to_dict"):
+                return _serialize(value.to_dict())
+
+            return value
+
+        _:
+            return value

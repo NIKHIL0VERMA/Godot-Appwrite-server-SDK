@@ -1,0 +1,71 @@
+# AppwriteService
+
+extends RefCounted
+
+var client: RefCounted
+
+func _init(p_client: RefCounted) -> void:
+    client = p_client
+
+func _call_web(method: String, path: String, params: Dictionary = {}) -> Variant:
+    var result = await client.redirect(method, path, {}, params)
+    return _handle_response(result)
+
+func _call(method: String, path: String, headers: Dictionary = {}, params: Dictionary = {}, model_script: Variant = null) -> Variant:
+    var result = await client.call_api(method, path, headers, params)
+    return _handle_response(result, model_script)
+
+func _handle_response(result: Dictionary, model_script: Variant = null) -> Variant:
+    if result.statusCode == 0:
+        var error_msg = result.get("error", "Unknown error")
+        push_error("Appwrite Network Error: %s" % error_msg)
+        return AppwriteException.new(error_msg, 0, "network_error", "")
+
+    if result.statusCode >= 400:
+        var message = ""
+        var code = result.statusCode
+        var type = ""
+        var response = ""
+        if result.get("body") is Dictionary:
+            message = result.body.get("message", "")
+            code = result.body.get("code", result.statusCode)
+            type = result.body.get("type", "")
+            response = str(result.body)
+        elif result.has("error"):
+            message = str(result.get("error", ""))
+            response = message
+        else:
+            message = str(result.get("body", ""))
+            response = str(result.get("body", ""))
+        
+        push_error("Appwrite Error (%s): %s" % [type, message])
+        return AppwriteException.new(message, code, type, response)
+
+    if model_script == null:
+        return result.get("body", {})
+        
+    if result.get("body") is Array:
+        var list: Array[RefCounted] = []
+        for item in result.body:
+            if item is Dictionary:
+                var parsed = model_script.from_dict(item)
+                if parsed is AppwriteException:
+                    return parsed
+                list.append(parsed)
+            else:
+                return AppwriteException.new(
+                    "Expected Dictionary in array response",
+                    result.statusCode,
+                    "invalid_response",
+                    str(item)
+                )
+        return list 
+    
+    if not (result.get("body") is Dictionary):
+        return AppwriteException.new(
+            "Expected Dictionary response",
+            result.statusCode,
+            "invalid_response",
+            str(result.get("body"))
+        )
+    return model_script.from_dict(result.get("body", {}))

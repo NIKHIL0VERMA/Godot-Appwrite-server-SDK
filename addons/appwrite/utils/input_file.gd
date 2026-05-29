@@ -1,0 +1,90 @@
+class_name AppwriteInputFile
+extends RefCounted
+
+var path: String ## Path to the file
+var bytes: PackedByteArray ## File bytes
+var filename: String ## File name
+var content_type: String ## File content type
+
+func _init(file_path: String = "", bytes_data: PackedByteArray = PackedByteArray(), custom_filename: String = "") -> void:
+    self.path = file_path
+    self.bytes = bytes_data
+    self.filename = custom_filename
+    
+    if self.filename == "" and self.path != "":
+        self.filename = self.path.get_file()
+    
+    self.content_type = _guess_mime_type(self.filename)
+
+## Creates a new AppwriteInputFile from a file path
+static func from_path(file_path: String, custom_filename: String = "") -> AppwriteInputFile:
+    return AppwriteInputFile.new(file_path, PackedByteArray(), custom_filename)
+
+## Creates a new AppwriteInputFile from bytes
+static func from_bytes(bytes_data: PackedByteArray, custom_filename: String = "") -> AppwriteInputFile:
+    return AppwriteInputFile.new("", bytes_data, custom_filename)
+
+static func from_text(text: String, custom_filename: String = "") -> AppwriteInputFile:
+    return from_bytes(text.to_utf8_buffer(), custom_filename)
+
+## Return the PackedByteArray of the file
+func get_data() -> PackedByteArray:
+    if not bytes.is_empty():
+        return bytes
+    if not path.is_empty():
+        if not FileAccess.file_exists(path):
+            push_error("File not found: %s" % path)
+            return PackedByteArray()
+        var file := FileAccess.open(path, FileAccess.READ)
+        if not file:
+            push_error("Failed to open file: %s" % path)
+            return PackedByteArray()
+        var data = file.get_buffer(file.get_length())
+        file = null
+        if data.is_empty():
+            push_error("Failed to read file: %s" % path)
+            return PackedByteArray()
+        return data
+    return PackedByteArray()
+
+## Return the size of the file
+func get_size() -> int:
+    if not bytes.is_empty():
+        return bytes.size()
+    if not path.is_empty():
+        var file := FileAccess.open(path, FileAccess.READ)
+        if file:
+            var sz = file.get_length()
+            file = null
+            return sz
+    return 0
+
+## Return a chunk of the file
+func get_chunk(offset: int, length: int) -> PackedByteArray:
+    if not bytes.is_empty():
+        return bytes.slice(offset, offset + length)
+    if not path.is_empty():
+        var file := FileAccess.open(path, FileAccess.READ)
+        if file:
+            file.seek(offset)
+            var data = file.get_buffer(length)
+            file = null
+            return data
+    return PackedByteArray()
+
+static func _guess_mime_type(filename: String) -> String:
+    var ext := filename.get_extension().to_lower()
+
+    match ext:
+        "png":
+            return "image/png"
+        "jpg", "jpeg":
+            return "image/jpeg"
+        "json":
+            return "application/json"
+        "txt":
+            return "text/plain"
+        "pdf":
+            return "application/pdf"
+        _:
+            return "application/octet-stream"
