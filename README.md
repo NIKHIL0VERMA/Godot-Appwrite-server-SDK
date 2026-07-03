@@ -2,6 +2,8 @@
 
 This sdk provide support for Auth, Databases, Storage, Functions, Teams, and more.
 
+[SDK Usage Example](https://nikhil0verma.github.io/Godot-Appwrite-server-SDK/)
+
 > [!IMPORTANT]
 > This project is community-maintained and is not officially maintained by Appwrite.
 

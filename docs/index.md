@@ -4,7 +4,6 @@ Welcome to the community-maintained Appwrite SDK for Headless Godot 4.
 
 This sdk provide support for Auth, Databases, Storage, Functions, Teams, and more.
 
-[!IMPORTANT]
 This project is community-maintained and is not officially maintained by Appwrite.
 
 ## What is this documentation?
