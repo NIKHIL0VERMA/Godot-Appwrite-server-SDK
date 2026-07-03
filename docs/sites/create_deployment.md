@@ -16,7 +16,7 @@ func _ready():
 
     var result = await Appwrite.sites.create_deployment(
         '<SITE_ID>',
-        InputFile.from_path("file.png"),
+        AppwriteInputFile.from_path("file.png"),
         '<INSTALL_COMMAND>', # optional
         '<BUILD_COMMAND>', # optional
         '<OUTPUT_DIRECTORY>', # optional

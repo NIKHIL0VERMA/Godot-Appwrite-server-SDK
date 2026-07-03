@@ -4,3 +4,4 @@
 /addons    !export-ignore
 /addons/** !export-ignore
 .env.example !export-ignore
+LICENSE !export-ignore

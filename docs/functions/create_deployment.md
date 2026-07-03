@@ -20,7 +20,7 @@ func _ready():
 
     var result = await Appwrite.functions.create_deployment(
         '<FUNCTION_ID>',
-        InputFile.from_path("file.png"),
+        AppwriteInputFile.from_path("file.png"),
         false,
         '<ENTRYPOINT>', # optional
         '<COMMANDS>' # optional
