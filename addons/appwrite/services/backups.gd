@@ -24,9 +24,11 @@ func list_archives(queries: Variant = null) -> Variant :
         _params['queries'] = queries
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupArchiveList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -56,9 +58,11 @@ func create_archive(services: Array[String], resource_id: Variant = null) -> Var
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupArchive
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -77,14 +81,16 @@ func get_archive(archive_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/backups/archives/{archiveId}'
-    _path = _path.replace('{archiveId}', str(archive_id))
+    _path = _path.replace('{archiveId}', archive_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupArchive
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -103,15 +109,17 @@ func delete_archive(archive_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/backups/archives/{archiveId}'
-    _path = _path.replace('{archiveId}', str(archive_id))
+    _path = _path.replace('{archiveId}', archive_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -138,9 +146,11 @@ func list_policies(queries: Variant = null) -> Variant :
         _params['queries'] = queries
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupPolicyList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -186,9 +196,11 @@ func create_policy(policy_id: String, services: Array[String], retention: int, s
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupPolicy
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -207,14 +219,16 @@ func get_policy(policy_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/backups/policies/{policyId}'
-    _path = _path.replace('{policyId}', str(policy_id))
+    _path = _path.replace('{policyId}', policy_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupPolicy
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -245,7 +259,7 @@ func update_policy(policy_id: String, xname: Variant = null, retention: Variant 
         return AppwriteException.new("Invalid type for parameter 'enabled'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/backups/policies/{policyId}'
-    _path = _path.replace('{policyId}', str(policy_id))
+    _path = _path.replace('{policyId}', policy_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -259,9 +273,11 @@ func update_policy(policy_id: String, xname: Variant = null, retention: Variant 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupPolicy
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -280,15 +296,17 @@ func delete_policy(policy_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/backups/policies/{policyId}'
-    _path = _path.replace('{policyId}', str(policy_id))
+    _path = _path.replace('{policyId}', policy_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -325,9 +343,11 @@ func create_restoration(archive_id: String, services: Array[String], new_resourc
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupRestoration
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -354,9 +374,11 @@ func list_restorations(queries: Variant = null) -> Variant :
         _params['queries'] = queries
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupRestorationList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -375,14 +397,16 @@ func get_restoration(restoration_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/backups/restorations/{restorationId}'
-    _path = _path.replace('{restorationId}', str(restoration_id))
+    _path = _path.replace('{restorationId}', restoration_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBackupRestoration
+
 
     return await _call('get', _path, _headers, _params, model_script)
 

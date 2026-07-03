@@ -4,6 +4,7 @@ const DATABASES = "databases"
 const TABLESDB = "tablesdb"
 const DOCUMENTSDB = "documentsdb"
 const VECTORSDB = "vectorsdb"
+const DEDICATEDDATABASES = "dedicatedDatabases"
 const FUNCTIONS = "functions"
 const STORAGE = "storage"
 
@@ -18,6 +19,7 @@ static func values() -> Array[String]:
                 "tablesdb",
                 "documentsdb",
                 "vectorsdb",
+                "dedicatedDatabases",
                 "functions",
                 "storage",
             ]

@@ -23,9 +23,11 @@ func query(query: Dictionary) -> Variant :
     var _headers := {
         'x-sdk-graphql': 'true',
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = null
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -51,9 +53,11 @@ func mutation(query: Dictionary) -> Variant :
     var _headers := {
         'x-sdk-graphql': 'true',
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = null
+
 
     return await _call('post', _path, _headers, _params, model_script)
 

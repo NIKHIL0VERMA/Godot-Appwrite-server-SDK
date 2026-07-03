@@ -17,6 +17,7 @@ const _FIELD_MAP := {
     "joined": "joined",
     "confirm": "confirm",
     "mfa": "mfa",
+    "useraccessedat": "userAccessedAt",
     "roles": "roles",
 }
 
@@ -33,6 +34,7 @@ var invited: String ## Date, the user has been invited to join the team in ISO 8
 var joined: String ## Date, the user has accepted the invitation to join the team in ISO 8601 format.
 var confirm: bool ## User confirmation status, true if the user has joined the team or false otherwise.
 var mfa: bool ## Multi factor authentication status, true if the user has MFA enabled or false otherwise. Hide this attribute by toggling membership privacy in the Console.
+var useraccessedat: String ## Most recent access date in ISO 8601 format. Show this attribute by toggling membership privacy in the Console.
 var roles: Array ## User list of roles
 
 ## Convert dictionary to model

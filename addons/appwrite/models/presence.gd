@@ -12,6 +12,7 @@ const _FIELD_MAP := {
     "status": "status",
     "source": "source",
     "expiresat": "expiresAt",
+    "metadata": "metadata",
 }
 
 var id: String ## Presence ID.
@@ -22,6 +23,7 @@ var userid: String ## User ID.
 var status: String ## Presence status.
 var source: String ## Presence source.
 var expiresat: String ## Presence expiry date in ISO 8601 format.
+var metadata: Dictionary ## Presence metadata.
 
 ## Convert dictionary to model
 static func from_dict(dict: Dictionary):

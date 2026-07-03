@@ -10,6 +10,7 @@ const _FIELD_MAP := {
     "userphone": "userPhone",
     "username": "userName",
     "usermfa": "userMFA",
+    "useraccessedat": "userAccessedAt",
 }
 
 var id: String ## Policy ID.
@@ -18,6 +19,7 @@ var useremail: bool ## Whether user email is visible in memberships.
 var userphone: bool ## Whether user phone is visible in memberships.
 var username: bool ## Whether user name is visible in memberships.
 var usermfa: bool ## Whether user MFA status is visible in memberships.
+var useraccessedat: bool ## Whether user last access time is visible in memberships.
 
 ## Convert dictionary to model
 static func from_dict(dict: Dictionary):

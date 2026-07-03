@@ -90,9 +90,12 @@ const ARCHIVES_READ = "archives.read"
 const ARCHIVES_WRITE = "archives.write"
 const RESTORATIONS_READ = "restorations.read"
 const RESTORATIONS_WRITE = "restorations.write"
+const DEDICATEDDATABASES_EXECUTE = "dedicatedDatabases.execute"
 const DOMAINS_READ = "domains.read"
 const DOMAINS_WRITE = "domains.write"
 const EVENTS_READ = "events.read"
+const APPS_READ = "apps.read"
+const APPS_WRITE = "apps.write"
 const USAGE_READ = "usage.read"
 
 ## Validate if value is in enum
@@ -192,8 +195,11 @@ static func values() -> Array[String]:
                 "archives.write",
                 "restorations.read",
                 "restorations.write",
+                "dedicatedDatabases.execute",
                 "domains.read",
                 "domains.write",
                 "events.read",
+                "apps.read",
+                "apps.write",
                 "usage.read",
             ]

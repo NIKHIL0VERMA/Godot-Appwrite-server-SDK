@@ -21,6 +21,7 @@ func xget() -> Variant :
 
     var model_script = AppwriteProject
 
+
     return await _call('get', _path, _headers, _params, model_script)
 
 
@@ -44,6 +45,7 @@ func delete() -> Variant :
 
     var model_script = null
 
+
     return await _call('delete', _path, _headers, _params, model_script)
 
 
@@ -62,16 +64,18 @@ func update_auth_method(method_id: String, enabled: bool) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/auth-methods/{methodId}'
-    _path = _path.replace('{methodId}', str(method_id))
+    _path = _path.replace('{methodId}', method_id.uri_encode())
 
     var _params := {}
     _params['enabled'] = enabled
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -103,9 +107,11 @@ func list_keys(queries: Variant = null, total: Variant = null) -> Variant :
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteKeyList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -141,9 +147,11 @@ func create_key(key_id: String, xname: String, scopes: Array[String], expire: Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteKey
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -172,9 +180,11 @@ func create_ephemeral_key(scopes: Array[String], duration: int) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteEphemeralKey
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -193,14 +203,16 @@ func get_key(key_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/keys/{keyId}'
-    _path = _path.replace('{keyId}', str(key_id))
+    _path = _path.replace('{keyId}', key_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteKey
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -224,7 +236,7 @@ func update_key(key_id: String, xname: String, scopes: Array[String], expire: Va
         return AppwriteException.new("Invalid type for parameter 'expire'. Expected String.", 0, "argument_error", "")
 
     var _path := '/project/keys/{keyId}'
-    _path = _path.replace('{keyId}', str(key_id))
+    _path = _path.replace('{keyId}', key_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -234,9 +246,11 @@ func update_key(key_id: String, xname: String, scopes: Array[String], expire: Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteKey
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -255,7 +269,7 @@ func delete_key(key_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/keys/{keyId}'
-    _path = _path.replace('{keyId}', str(key_id))
+    _path = _path.replace('{keyId}', key_id.uri_encode())
 
     var _params := {}
 
@@ -264,6 +278,7 @@ func delete_key(key_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -288,9 +303,11 @@ func update_labels(labels: Array) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -322,9 +339,11 @@ func list_mock_phones(queries: Variant = null, total: Variant = null) -> Variant
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMockNumberList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -351,9 +370,11 @@ func create_mock_phone(number: String, otp: String) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMockNumber
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -372,14 +393,16 @@ func get_mock_phone(number: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/mock-phones/{number}'
-    _path = _path.replace('{number}', str(number))
+    _path = _path.replace('{number}', number.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMockNumber
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -399,16 +422,18 @@ func update_mock_phone(number: String, otp: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/mock-phones/{number}'
-    _path = _path.replace('{number}', str(number))
+    _path = _path.replace('{number}', number.uri_encode())
 
     var _params := {}
     _params['otp'] = otp
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMockNumber
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -427,7 +452,7 @@ func delete_mock_phone(number: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/mock-phones/{number}'
-    _path = _path.replace('{number}', str(number))
+    _path = _path.replace('{number}', number.uri_encode())
 
     var _params := {}
 
@@ -436,6 +461,7 @@ func delete_mock_phone(number: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -467,11 +493,99 @@ func list_o_auth2_providers(queries: Variant = null, total: Variant = null) -> V
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2ProviderList
 
+
     return await _call('get', _path, _headers, _params, model_script)
+
+
+## Update the OAuth2 server (OIDC provider) configuration.[br]
+##[br]
+## Parameters:[br]
+## - [param enabled] [bool]: Enable or disable the OAuth2 server.[br]
+## - [param authorization_url] [String]: URL to your application with consent screen.[br]
+## - [param scopes] [Array]: List of allowed OAuth2 scopes. Maximum of 100 scopes are allowed, each up to 128 characters long.[br]
+## - [param authorization_details_types] [Array]: List of accepted `authorization_details` types. Maximum of 100 types are allowed, each up to 128 characters long.[br]
+## - [param access_token_duration] [int]: Access token duration in seconds for confidential clients (server-side apps that authenticate with a client secret). Leave empty to use default 8 hours.[br]
+## - [param refresh_token_duration] [int]: Refresh token duration in seconds for confidential clients (server-side apps that authenticate with a client secret). Leave empty to use default 1 year.[br]
+## - [param public_access_token_duration] [int]: Access token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 1 hour.[br]
+## - [param public_refresh_token_duration] [int]: Refresh token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 30 days.[br]
+## - [param confidential_pkce] [bool]: When enabled, PKCE is required for confidential clients (server-side flows using client_secret). PKCE is always required for public clients regardless of this setting.[br]
+## - [param verification_url] [String]: URL to your application page where users enter the device flow user code. Required to enable the Device Authorization Grant.[br]
+## - [param user_code_length] [int]: Number of characters in the device flow user code, excluding the formatting separator. Shorter codes are easier to type but weaker; pair short codes with short expiry. Leave empty to use default 8.[br]
+## - [param user_code_format] [String]: Character set for device flow user codes: `numeric` (digits only — best for numeric keypads and TV remotes), `alphabetic` (letters only), or `alphanumeric` (letters and digits — highest entropy per character). Defaults to `alphanumeric`.[br]
+## - [param device_code_duration] [int]: Lifetime in seconds of device flow device codes and user codes. Device codes are intentionally short-lived. Leave empty to use default 600.[br]
+##[br]
+## Returns:[br]
+## - [AppwriteProject] on success.[br]
+##[br]
+## Errors:[br]
+## - Returns error data as [member AppwriteException].
+func update_o_auth2_server(enabled: bool, authorization_url: String, scopes: Variant = null, authorization_details_types: Variant = null, access_token_duration: Variant = null, refresh_token_duration: Variant = null, public_access_token_duration: Variant = null, public_refresh_token_duration: Variant = null, confidential_pkce: Variant = null, verification_url: Variant = null, user_code_length: Variant = null, user_code_format: Variant = null, device_code_duration: Variant = null) -> Variant :
+    # Runtime type checking, GDScript typed vars don't support null or optional
+    if scopes != null and not scopes is Array:
+        return AppwriteException.new("Invalid type for parameter 'scopes'. Expected Array.", 0, "argument_error", "")
+    if authorization_details_types != null and not authorization_details_types is Array:
+        return AppwriteException.new("Invalid type for parameter 'authorization_details_types'. Expected Array.", 0, "argument_error", "")
+    if access_token_duration != null and not access_token_duration is int:
+        return AppwriteException.new("Invalid type for parameter 'access_token_duration'. Expected int.", 0, "argument_error", "")
+    if refresh_token_duration != null and not refresh_token_duration is int:
+        return AppwriteException.new("Invalid type for parameter 'refresh_token_duration'. Expected int.", 0, "argument_error", "")
+    if public_access_token_duration != null and not public_access_token_duration is int:
+        return AppwriteException.new("Invalid type for parameter 'public_access_token_duration'. Expected int.", 0, "argument_error", "")
+    if public_refresh_token_duration != null and not public_refresh_token_duration is int:
+        return AppwriteException.new("Invalid type for parameter 'public_refresh_token_duration'. Expected int.", 0, "argument_error", "")
+    if confidential_pkce != null and not confidential_pkce is bool:
+        return AppwriteException.new("Invalid type for parameter 'confidential_pkce'. Expected bool.", 0, "argument_error", "")
+    if verification_url != null and not verification_url is String:
+        return AppwriteException.new("Invalid type for parameter 'verification_url'. Expected String.", 0, "argument_error", "")
+    if user_code_length != null and not user_code_length is int:
+        return AppwriteException.new("Invalid type for parameter 'user_code_length'. Expected int.", 0, "argument_error", "")
+    if user_code_format != null and not user_code_format is String:
+        return AppwriteException.new("Invalid type for parameter 'user_code_format'. Expected String.", 0, "argument_error", "")
+    if device_code_duration != null and not device_code_duration is int:
+        return AppwriteException.new("Invalid type for parameter 'device_code_duration'. Expected int.", 0, "argument_error", "")
+
+    var _path := '/project/oauth2-server'
+
+    var _params := {}
+    _params['enabled'] = enabled
+    _params['authorizationUrl'] = authorization_url
+    if scopes != null:
+        _params['scopes'] = scopes
+    if authorization_details_types != null:
+        _params['authorizationDetailsTypes'] = authorization_details_types
+    if access_token_duration != null:
+        _params['accessTokenDuration'] = access_token_duration
+    if refresh_token_duration != null:
+        _params['refreshTokenDuration'] = refresh_token_duration
+    if public_access_token_duration != null:
+        _params['publicAccessTokenDuration'] = public_access_token_duration
+    if public_refresh_token_duration != null:
+        _params['publicRefreshTokenDuration'] = public_refresh_token_duration
+    if confidential_pkce != null:
+        _params['confidentialPkce'] = confidential_pkce
+    if verification_url != null:
+        _params['verificationUrl'] = verification_url
+    if user_code_length != null:
+        _params['userCodeLength'] = user_code_length
+    if user_code_format != null:
+        _params['userCodeFormat'] = user_code_format
+    if device_code_duration != null:
+        _params['deviceCodeDuration'] = device_code_duration
+
+    var _headers := {
+        'content-type': 'application/json',
+        'accept': 'application/json',
+    }
+
+    var model_script = AppwriteProject
+
+
+    return await _call('put', _path, _headers, _params, model_script)
 
 
 ## Update the project OAuth2 Amazon configuration.[br]
@@ -507,9 +621,11 @@ func update_o_auth2_amazon(client_id: Variant = null, client_secret: Variant = n
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Amazon
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -557,9 +673,11 @@ func update_o_auth2_apple(service_id: Variant = null, key_id: Variant = null, te
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Apple
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -602,9 +720,11 @@ func update_o_auth2_auth0(client_id: Variant = null, client_secret: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Auth0
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -647,9 +767,11 @@ func update_o_auth2_authentik(client_id: Variant = null, client_secret: Variant 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Authentik
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -687,9 +809,11 @@ func update_o_auth2_autodesk(client_id: Variant = null, client_secret: Variant =
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Autodesk
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -727,9 +851,11 @@ func update_o_auth2_bitbucket(key: Variant = null, secret: Variant = null, enabl
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Bitbucket
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -767,9 +893,11 @@ func update_o_auth2_bitly(client_id: Variant = null, client_secret: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Bitly
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -807,9 +935,11 @@ func update_o_auth2_box(client_id: Variant = null, client_secret: Variant = null
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Box
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -847,9 +977,11 @@ func update_o_auth2_dailymotion(api_key: Variant = null, api_secret: Variant = n
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Dailymotion
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -887,9 +1019,11 @@ func update_o_auth2_discord(client_id: Variant = null, client_secret: Variant = 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Discord
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -927,9 +1061,11 @@ func update_o_auth2_disqus(public_key: Variant = null, secret_key: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Disqus
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -967,9 +1103,11 @@ func update_o_auth2_dropbox(app_key: Variant = null, app_secret: Variant = null,
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Dropbox
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1007,9 +1145,11 @@ func update_o_auth2_etsy(key_string: Variant = null, shared_secret: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Etsy
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1047,9 +1187,11 @@ func update_o_auth2_facebook(app_id: Variant = null, app_secret: Variant = null,
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Facebook
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1087,9 +1229,11 @@ func update_o_auth2_figma(client_id: Variant = null, client_secret: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Figma
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1132,9 +1276,11 @@ func update_o_auth2_fusion_auth(client_id: Variant = null, client_secret: Varian
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2FusionAuth
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1172,9 +1318,11 @@ func update_o_auth2_git_hub(client_id: Variant = null, client_secret: Variant = 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Github
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1217,9 +1365,11 @@ func update_o_auth2_gitlab(application_id: Variant = null, secret: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Gitlab
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1262,9 +1412,11 @@ func update_o_auth2_google(client_id: Variant = null, client_secret: Variant = n
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Google
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1312,9 +1464,11 @@ func update_o_auth2_keycloak(client_id: Variant = null, client_secret: Variant =
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Keycloak
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1352,9 +1506,11 @@ func update_o_auth2_kick(client_id: Variant = null, client_secret: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Kick
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1392,9 +1548,11 @@ func update_o_auth2_linkedin(client_id: Variant = null, primary_client_secret: V
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Linkedin
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1437,9 +1595,11 @@ func update_o_auth2_microsoft(application_id: Variant = null, application_secret
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Microsoft
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1477,9 +1637,11 @@ func update_o_auth2_notion(oauth_client_id: Variant = null, oauth_client_secret:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Notion
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1537,9 +1699,11 @@ func update_o_auth2_oidc(client_id: Variant = null, client_secret: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Oidc
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1587,9 +1751,11 @@ func update_o_auth2_okta(client_id: Variant = null, client_secret: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Okta
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1627,9 +1793,11 @@ func update_o_auth2_paypal(client_id: Variant = null, secret_key: Variant = null
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Paypal
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1667,9 +1835,11 @@ func update_o_auth2_paypal_sandbox(client_id: Variant = null, secret_key: Varian
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Paypal
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1707,9 +1877,11 @@ func update_o_auth2_podio(client_id: Variant = null, client_secret: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Podio
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1747,9 +1919,11 @@ func update_o_auth2_salesforce(customer_key: Variant = null, customer_secret: Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Salesforce
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1787,9 +1961,11 @@ func update_o_auth2_slack(client_id: Variant = null, client_secret: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Slack
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1827,9 +2003,11 @@ func update_o_auth2_spotify(client_id: Variant = null, client_secret: Variant = 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Spotify
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1867,9 +2045,11 @@ func update_o_auth2_stripe(client_id: Variant = null, api_secret_key: Variant = 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Stripe
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1907,9 +2087,11 @@ func update_o_auth2_tradeshift(oauth2_client_id: Variant = null, oauth2_client_s
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Tradeshift
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1947,9 +2129,11 @@ func update_o_auth2_tradeshift_sandbox(oauth2_client_id: Variant = null, oauth2_
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Tradeshift
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1987,9 +2171,11 @@ func update_o_auth2_twitch(client_id: Variant = null, client_secret: Variant = n
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Twitch
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2027,9 +2213,11 @@ func update_o_auth2_word_press(client_id: Variant = null, client_secret: Variant
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2WordPress
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2067,9 +2255,11 @@ func update_o_auth2_x(customer_key: Variant = null, secret_key: Variant = null, 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2X
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2107,9 +2297,11 @@ func update_o_auth2_yahoo(client_id: Variant = null, client_secret: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Yahoo
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2147,9 +2339,11 @@ func update_o_auth2_yandex(client_id: Variant = null, client_secret: Variant = n
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Yandex
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2187,9 +2381,11 @@ func update_o_auth2_zoho(client_id: Variant = null, client_secret: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Zoho
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2227,9 +2423,11 @@ func update_o_auth2_zoom(client_id: Variant = null, client_secret: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Zoom
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2248,14 +2446,16 @@ func get_o_auth2_provider(provider_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/oauth2/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteOAuth2Github
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2287,9 +2487,11 @@ func list_platforms(queries: Variant = null, total: Variant = null) -> Variant :
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2318,9 +2520,11 @@ func create_android_platform(platform_id: String, xname: String, application_id:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformAndroid
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2341,7 +2545,7 @@ func update_android_platform(platform_id: String, xname: String, application_id:
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/platforms/android/{platformId}'
-    _path = _path.replace('{platformId}', str(platform_id))
+    _path = _path.replace('{platformId}', platform_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -2349,9 +2553,11 @@ func update_android_platform(platform_id: String, xname: String, application_id:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformAndroid
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -2380,9 +2586,11 @@ func create_apple_platform(platform_id: String, xname: String, bundle_identifier
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformApple
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2403,7 +2611,7 @@ func update_apple_platform(platform_id: String, xname: String, bundle_identifier
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/platforms/apple/{platformId}'
-    _path = _path.replace('{platformId}', str(platform_id))
+    _path = _path.replace('{platformId}', platform_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -2411,9 +2619,11 @@ func update_apple_platform(platform_id: String, xname: String, bundle_identifier
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformApple
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -2442,9 +2652,11 @@ func create_linux_platform(platform_id: String, xname: String, package_name: Str
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformLinux
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2465,7 +2677,7 @@ func update_linux_platform(platform_id: String, xname: String, package_name: Str
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/platforms/linux/{platformId}'
-    _path = _path.replace('{platformId}', str(platform_id))
+    _path = _path.replace('{platformId}', platform_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -2473,9 +2685,11 @@ func update_linux_platform(platform_id: String, xname: String, package_name: Str
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformLinux
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -2504,9 +2718,11 @@ func create_web_platform(platform_id: String, xname: String, hostname: String) -
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformWeb
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2527,7 +2743,7 @@ func update_web_platform(platform_id: String, xname: String, hostname: String) -
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/platforms/web/{platformId}'
-    _path = _path.replace('{platformId}', str(platform_id))
+    _path = _path.replace('{platformId}', platform_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -2535,9 +2751,11 @@ func update_web_platform(platform_id: String, xname: String, hostname: String) -
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformWeb
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -2566,9 +2784,11 @@ func create_windows_platform(platform_id: String, xname: String, package_identif
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformWindows
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2589,7 +2809,7 @@ func update_windows_platform(platform_id: String, xname: String, package_identif
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/platforms/windows/{platformId}'
-    _path = _path.replace('{platformId}', str(platform_id))
+    _path = _path.replace('{platformId}', platform_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -2597,9 +2817,11 @@ func update_windows_platform(platform_id: String, xname: String, package_identif
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformWindows
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -2618,14 +2840,16 @@ func get_platform(platform_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/platforms/{platformId}'
-    _path = _path.replace('{platformId}', str(platform_id))
+    _path = _path.replace('{platformId}', platform_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePlatformWeb
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2644,7 +2868,7 @@ func delete_platform(platform_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/platforms/{platformId}'
-    _path = _path.replace('{platformId}', str(platform_id))
+    _path = _path.replace('{platformId}', platform_id.uri_encode())
 
     var _params := {}
 
@@ -2653,6 +2877,7 @@ func delete_platform(platform_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -2684,9 +2909,11 @@ func list_policies(queries: Variant = null, total: Variant = null) -> Variant :
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePolicyList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2711,9 +2938,40 @@ func update_deny_aliased_email_policy(enabled: bool) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
+
+    return await _call('patch', _path, _headers, _params, model_script)
+
+
+## Configures if only corporate email addresses (non-free and non-disposable domains) are allowed during new user sign-ups and email updates.[br]
+##[br]
+## Parameters:[br]
+## - [param enabled] [bool]: Set whether or not to restrict sign-ups and email updates to corporate email addresses only.[br]
+##[br]
+## Returns:[br]
+## - [AppwriteProject] on success.[br]
+##[br]
+## Errors:[br]
+## - Returns error data as [member AppwriteException].
+func update_deny_corporate_email_policy(enabled: bool) -> Variant :
+    # Runtime type checking, GDScript typed vars don't support null or optional
+
+    var _path := '/project/policies/deny-corporate-email'
+
+    var _params := {}
+    _params['enabled'] = enabled
+
+    var _headers := {
+        'content-type': 'application/json',
+        'accept': 'application/json',
+    }
+
+    var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2738,9 +2996,11 @@ func update_deny_disposable_email_policy(enabled: bool) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2765,9 +3025,11 @@ func update_deny_free_email_policy(enabled: bool) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2780,13 +3042,14 @@ func update_deny_free_email_policy(enabled: bool) -> Variant :
 ## - [param user_phone] [bool]: Set to true if you want make user phone number visible to all team members, or false to hide it.[br]
 ## - [param user_name] [bool]: Set to true if you want make user name visible to all team members, or false to hide it.[br]
 ## - [param user_mfa] [bool]: Set to true if you want make user MFA status visible to all team members, or false to hide it.[br]
+## - [param user_accessed_at] [bool]: Set to true if you want make user last access time visible to all team members, or false to hide it.[br]
 ##[br]
 ## Returns:[br]
 ## - [AppwriteProject] on success.[br]
 ##[br]
 ## Errors:[br]
 ## - Returns error data as [member AppwriteException].
-func update_membership_privacy_policy(user_id: Variant = null, user_email: Variant = null, user_phone: Variant = null, user_name: Variant = null, user_mfa: Variant = null) -> Variant :
+func update_membership_privacy_policy(user_id: Variant = null, user_email: Variant = null, user_phone: Variant = null, user_name: Variant = null, user_mfa: Variant = null, user_accessed_at: Variant = null) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
     if user_id != null and not user_id is bool:
         return AppwriteException.new("Invalid type for parameter 'user_id'. Expected bool.", 0, "argument_error", "")
@@ -2798,6 +3061,8 @@ func update_membership_privacy_policy(user_id: Variant = null, user_email: Varia
         return AppwriteException.new("Invalid type for parameter 'user_name'. Expected bool.", 0, "argument_error", "")
     if user_mfa != null and not user_mfa is bool:
         return AppwriteException.new("Invalid type for parameter 'user_mfa'. Expected bool.", 0, "argument_error", "")
+    if user_accessed_at != null and not user_accessed_at is bool:
+        return AppwriteException.new("Invalid type for parameter 'user_accessed_at'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/project/policies/membership-privacy'
 
@@ -2812,12 +3077,16 @@ func update_membership_privacy_policy(user_id: Variant = null, user_email: Varia
         _params['userName'] = user_name
     if user_mfa != null:
         _params['userMFA'] = user_mfa
+    if user_accessed_at != null:
+        _params['userAccessedAt'] = user_accessed_at
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2842,9 +3111,11 @@ func update_password_dictionary_policy(enabled: bool) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2871,9 +3142,11 @@ func update_password_history_policy(total: int) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2898,9 +3171,63 @@ func update_password_personal_data_policy(enabled: bool) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
+
+    return await _call('patch', _path, _headers, _params, model_script)
+
+
+## Update the password strength requirements for users in the project.[br]
+##[br]
+## Parameters:[br]
+## - [param min] [int]: Minimum password length. Value must be between 8 and 256. Default is 8.[br]
+## - [param uppercase] [bool]: Whether passwords must include at least one uppercase letter.[br]
+## - [param lowercase] [bool]: Whether passwords must include at least one lowercase letter.[br]
+## - [param number] [bool]: Whether passwords must include at least one number.[br]
+## - [param symbols] [bool]: Whether passwords must include at least one symbol.[br]
+##[br]
+## Returns:[br]
+## - [AppwritePolicyPasswordStrength] on success.[br]
+##[br]
+## Errors:[br]
+## - Returns error data as [member AppwriteException].
+func update_password_strength_policy(min: Variant = null, uppercase: Variant = null, lowercase: Variant = null, number: Variant = null, symbols: Variant = null) -> Variant :
+    # Runtime type checking, GDScript typed vars don't support null or optional
+    if min != null and not min is int:
+        return AppwriteException.new("Invalid type for parameter 'min'. Expected int.", 0, "argument_error", "")
+    if uppercase != null and not uppercase is bool:
+        return AppwriteException.new("Invalid type for parameter 'uppercase'. Expected bool.", 0, "argument_error", "")
+    if lowercase != null and not lowercase is bool:
+        return AppwriteException.new("Invalid type for parameter 'lowercase'. Expected bool.", 0, "argument_error", "")
+    if number != null and not number is bool:
+        return AppwriteException.new("Invalid type for parameter 'number'. Expected bool.", 0, "argument_error", "")
+    if symbols != null and not symbols is bool:
+        return AppwriteException.new("Invalid type for parameter 'symbols'. Expected bool.", 0, "argument_error", "")
+
+    var _path := '/project/policies/password-strength'
+
+    var _params := {}
+    if min != null:
+        _params['min'] = min
+    if uppercase != null:
+        _params['uppercase'] = uppercase
+    if lowercase != null:
+        _params['lowercase'] = lowercase
+    if number != null:
+        _params['number'] = number
+    if symbols != null:
+        _params['symbols'] = symbols
+
+    var _headers := {
+        'content-type': 'application/json',
+        'accept': 'application/json',
+    }
+
+    var model_script = AppwritePolicyPasswordStrength
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2925,9 +3252,11 @@ func update_session_alert_policy(enabled: bool) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2952,9 +3281,11 @@ func update_session_duration_policy(duration: int) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2979,9 +3310,11 @@ func update_session_invalidation_policy(enabled: bool) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -3006,9 +3339,11 @@ func update_session_limit_policy(total: int) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -3033,9 +3368,11 @@ func update_user_limit_policy(total: int) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -3043,7 +3380,7 @@ func update_user_limit_policy(total: int) -> Variant :
 ## Get a policy by its unique ID. This endpoint returns the current configuration for the requested project policy.[br]
 ##[br]
 ## Parameters:[br]
-## - [param policy_id] [String]: Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy.[br]
+## - [param policy_id] [String]: Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email.[br]
 ##[br]
 ## Returns:[br]
 ## - [AppwritePolicyPasswordDictionary] on success.[br]
@@ -3054,14 +3391,16 @@ func get_policy(policy_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/policies/{policyId}'
-    _path = _path.replace('{policyId}', str(policy_id))
+    _path = _path.replace('{policyId}', policy_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePolicyPasswordDictionary
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -3081,16 +3420,18 @@ func update_protocol(protocol_id: String, enabled: bool) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/protocols/{protocolId}'
-    _path = _path.replace('{protocolId}', str(protocol_id))
+    _path = _path.replace('{protocolId}', protocol_id.uri_encode())
 
     var _params := {}
     _params['enabled'] = enabled
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -3098,7 +3439,7 @@ func update_protocol(protocol_id: String, enabled: bool) -> Variant :
 ## Update properties of a specific service. Use this endpoint to enable or disable a service in your project. [br]
 ##[br]
 ## Parameters:[br]
-## - [param service_id] [String]: Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor[br]
+## - [param service_id] [String]: Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor, oauth2[br]
 ## - [param enabled] [bool]: Service status.[br]
 ##[br]
 ## Returns:[br]
@@ -3110,16 +3451,18 @@ func update_service(service_id: String, enabled: bool) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/services/{serviceId}'
-    _path = _path.replace('{serviceId}', str(service_id))
+    _path = _path.replace('{serviceId}', service_id.uri_encode())
 
     var _params := {}
     _params['enabled'] = enabled
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -3192,9 +3535,11 @@ func update_smtp(host: Variant = null, port: Variant = null, username: Variant =
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -3222,6 +3567,7 @@ func create_smtp_test(emails: Array) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -3253,9 +3599,11 @@ func list_email_templates(queries: Variant = null, total: Variant = null) -> Var
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteEmailTemplateList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -3315,9 +3663,11 @@ func update_email_template(template_id: String, locale: Variant = null, subject:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteEmailTemplate
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -3339,49 +3689,18 @@ func get_email_template(template_id: String, locale: Variant = null) -> Variant 
         return AppwriteException.new("Invalid type for parameter 'locale'. Expected String.", 0, "argument_error", "")
 
     var _path := '/project/templates/email/{templateId}'
-    _path = _path.replace('{templateId}', str(template_id))
+    _path = _path.replace('{templateId}', template_id.uri_encode())
 
     var _params := {}
     if locale != null:
         _params['locale'] = locale
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteEmailTemplate
 
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## Get comprehensive usage statistics for your project. View metrics including network requests, bandwidth, storage, function executions, database usage, and user activity. Specify a time range with startDate and endDate, and optionally set the data granularity with period (1h or 1d). The response includes both total counts and detailed breakdowns by resource, along with historical data over the specified period.[br]
-##[br]
-## Parameters:[br]
-## - [param start_date] [String]: Starting date for the usage[br]
-## - [param end_date] [String]: End date for the usage[br]
-## - [param period] [String]: Period used[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageProject] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_usage(start_date: String, end_date: String, period: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if period != null and not period is String:
-        return AppwriteException.new("Invalid type for parameter 'period'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/project/usage'
-
-    var _params := {}
-    _params['startDate'] = start_date
-    _params['endDate'] = end_date
-    if period != null:
-        _params['period'] = period
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageProject
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -3413,9 +3732,11 @@ func list_variables(queries: Variant = null, total: Variant = null) -> Variant :
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteVariableList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -3449,9 +3770,11 @@ func create_variable(variable_id: String, key: String, value: String, secret: Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteVariable
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -3470,14 +3793,16 @@ func get_variable(variable_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/variables/{variableId}'
-    _path = _path.replace('{variableId}', str(variable_id))
+    _path = _path.replace('{variableId}', variable_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteVariable
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -3505,7 +3830,7 @@ func update_variable(variable_id: String, key: Variant = null, value: Variant = 
         return AppwriteException.new("Invalid type for parameter 'secret'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/project/variables/{variableId}'
-    _path = _path.replace('{variableId}', str(variable_id))
+    _path = _path.replace('{variableId}', variable_id.uri_encode())
 
     var _params := {}
     if key != null:
@@ -3517,9 +3842,11 @@ func update_variable(variable_id: String, key: Variant = null, value: Variant = 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteVariable
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -3538,7 +3865,7 @@ func delete_variable(variable_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/project/variables/{variableId}'
-    _path = _path.replace('{variableId}', str(variable_id))
+    _path = _path.replace('{variableId}', variable_id.uri_encode())
 
     var _params := {}
 
@@ -3547,6 +3874,7 @@ func delete_variable(variable_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 

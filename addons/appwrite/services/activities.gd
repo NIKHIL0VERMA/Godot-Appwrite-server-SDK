@@ -24,9 +24,11 @@ func list_events(queries: Variant = null) -> Variant :
         _params['queries'] = queries
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteActivityEventList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -46,14 +48,16 @@ func get_event(event_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/activities/events/{eventId}'
-    _path = _path.replace('{eventId}', str(event_id))
+    _path = _path.replace('{eventId}', event_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteActivityEvent
+
 
     return await _call('get', _path, _headers, _params, model_script)
 

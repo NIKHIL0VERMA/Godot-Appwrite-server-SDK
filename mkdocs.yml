@@ -1,0 +1,29 @@
+site_name: Appwrite Server SDK for Godot 4
+site_description: Community-maintained Appwrite SDK for Headless Godot 4
+site_url: https://nikhil0verma.github.io/godot-appwrite-server-sdk
+site_author: Nikhil Verma, nikhil2003verma@gmail.com
+repo_url: https://github.com/NIKHIL0VERMA/Godot-Appwrite-server-SDK
+repo_name: Nikhil0Verma/godot-appwrite-server-sdk
+
+theme:
+  name: dracula
+  favicon: assets/img/favicon.ico
+  logo: assets/img/icon.svg
+  custom_dir: docs/overrides
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - awesome-nav
+
+copyright: Copyright © 2026 Nikhil Verma
+
+validation:
+  links:
+    absolute_links: ignore

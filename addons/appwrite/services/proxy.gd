@@ -29,9 +29,11 @@ func list_rules(queries: Variant = null, total: Variant = null) -> Variant :
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProxyRuleList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -58,9 +60,11 @@ func create_api_rule(domain: String) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProxyRule
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -94,9 +98,11 @@ func create_function_rule(domain: String, function_id: String, branch: Variant =
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProxyRule
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -131,9 +137,11 @@ func create_redirect_rule(domain: String, url: String, status_code: String, reso
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProxyRule
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -167,9 +175,11 @@ func create_site_rule(domain: String, site_id: String, branch: Variant = null) -
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProxyRule
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -188,14 +198,16 @@ func get_rule(rule_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/proxy/rules/{ruleId}'
-    _path = _path.replace('{ruleId}', str(rule_id))
+    _path = _path.replace('{ruleId}', rule_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProxyRule
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -214,7 +226,7 @@ func delete_rule(rule_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/proxy/rules/{ruleId}'
-    _path = _path.replace('{ruleId}', str(rule_id))
+    _path = _path.replace('{ruleId}', rule_id.uri_encode())
 
     var _params := {}
 
@@ -223,6 +235,7 @@ func delete_rule(rule_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -241,15 +254,17 @@ func update_rule_status(rule_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/proxy/rules/{ruleId}/status'
-    _path = _path.replace('{ruleId}', str(rule_id))
+    _path = _path.replace('{ruleId}', rule_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProxyRule
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 

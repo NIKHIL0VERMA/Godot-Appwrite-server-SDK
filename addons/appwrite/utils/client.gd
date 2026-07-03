@@ -1,4 +1,3 @@
-# Client
 extends RefCounted
 
 signal on_progress(progress: float, total_size: int, uploaded_size: int)
@@ -52,17 +51,17 @@ func set_jwt(value: String) -> RefCounted:
 func set_locale(value: String) -> RefCounted:
     _global_headers['x-appwrite-locale'] = value
     return self
-func set_mode(value: String) -> RefCounted:
-    _global_headers['x-appwrite-mode'] = value
-    return self
-func set_cookie(value: String) -> RefCounted:
-    _global_headers['cookie'] = value
-    return self
 func set_session(value: String) -> RefCounted:
     _global_headers['x-appwrite-session'] = value
     return self
+func set_forwarded_user_agent(value: String) -> RefCounted:
+    _global_headers['x-forwarded-user-agent'] = value
+    return self
 func set_dev_key(value: String) -> RefCounted:
     _global_headers['x-appwrite-dev-key'] = value
+    return self
+func set_cookie(value: String) -> RefCounted:
+    _global_headers['cookie'] = value
     return self
 func set_impersonate_user_id(value: String) -> RefCounted:
     _global_headers['x-appwrite-impersonate-user-id'] = value
@@ -72,9 +71,6 @@ func set_impersonate_user_email(value: String) -> RefCounted:
     return self
 func set_impersonate_user_phone(value: String) -> RefCounted:
     _global_headers['x-appwrite-impersonate-user-phone'] = value
-    return self
-func set_platform(value: String) -> RefCounted:
-    _global_headers['x-appwrite-platform'] = value
     return self
 
 func _http_request(method: String, path: String = "", headers: Dictionary = {}, params: Dictionary = {}, max_redirects: int = 8) -> Variant:

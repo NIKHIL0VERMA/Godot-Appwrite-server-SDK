@@ -34,9 +34,11 @@ func list_messages(queries: Variant = null, search: Variant = null, total: Varia
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMessageList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -110,9 +112,11 @@ func create_email(message_id: String, subject: String, content: String, topics: 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMessage
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -165,7 +169,7 @@ func update_email(message_id: String, topics: Variant = null, users: Variant = n
         return AppwriteException.new("Invalid type for parameter 'attachments'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/messaging/messages/email/{messageId}'
-    _path = _path.replace('{messageId}', str(message_id))
+    _path = _path.replace('{messageId}', message_id.uri_encode())
 
     var _params := {}
     if topics != null:
@@ -193,9 +197,11 @@ func update_email(message_id: String, topics: Variant = null, users: Variant = n
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMessage
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -310,9 +316,11 @@ func create_push(message_id: String, title: Variant = null, body: Variant = null
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMessage
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -386,7 +394,7 @@ func update_push(message_id: String, topics: Variant = null, users: Variant = nu
         return AppwriteException.new("Invalid type for parameter 'priority'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/messages/push/{messageId}'
-    _path = _path.replace('{messageId}', str(message_id))
+    _path = _path.replace('{messageId}', message_id.uri_encode())
 
     var _params := {}
     if topics != null:
@@ -428,9 +436,11 @@ func update_push(message_id: String, topics: Variant = null, users: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMessage
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -482,9 +492,11 @@ func create_sms(message_id: String, content: String, topics: Variant = null, use
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMessage
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -522,7 +534,7 @@ func update_sms(message_id: String, topics: Variant = null, users: Variant = nul
         return AppwriteException.new("Invalid type for parameter 'scheduled_at'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/messages/sms/{messageId}'
-    _path = _path.replace('{messageId}', str(message_id))
+    _path = _path.replace('{messageId}', message_id.uri_encode())
 
     var _params := {}
     if topics != null:
@@ -540,9 +552,11 @@ func update_sms(message_id: String, topics: Variant = null, users: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMessage
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -562,14 +576,16 @@ func get_message(message_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/messages/{messageId}'
-    _path = _path.replace('{messageId}', str(message_id))
+    _path = _path.replace('{messageId}', message_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMessage
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -588,7 +604,7 @@ func delete(message_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/messages/{messageId}'
-    _path = _path.replace('{messageId}', str(message_id))
+    _path = _path.replace('{messageId}', message_id.uri_encode())
 
     var _params := {}
 
@@ -597,6 +613,7 @@ func delete(message_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -621,7 +638,7 @@ func list_message_logs(message_id: String, queries: Variant = null, total: Varia
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/messaging/messages/{messageId}/logs'
-    _path = _path.replace('{messageId}', str(message_id))
+    _path = _path.replace('{messageId}', message_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -630,9 +647,11 @@ func list_message_logs(message_id: String, queries: Variant = null, total: Varia
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteLogList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -657,7 +676,7 @@ func list_targets(message_id: String, queries: Variant = null, total: Variant = 
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/messaging/messages/{messageId}/targets'
-    _path = _path.replace('{messageId}', str(message_id))
+    _path = _path.replace('{messageId}', message_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -666,9 +685,11 @@ func list_targets(message_id: String, queries: Variant = null, total: Variant = 
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTargetList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -705,9 +726,11 @@ func list_providers(queries: Variant = null, search: Variant = null, total: Vari
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProviderList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -764,9 +787,11 @@ func create_apns_provider(provider_id: String, xname: String, auth_key: Variant 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -806,7 +831,7 @@ func update_apns_provider(provider_id: String, xname: Variant = null, enabled: V
         return AppwriteException.new("Invalid type for parameter 'sandbox'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/apns/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -826,9 +851,11 @@ func update_apns_provider(provider_id: String, xname: Variant = null, enabled: V
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -865,9 +892,11 @@ func create_fcm_provider(provider_id: String, xname: String, service_account_jso
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -895,7 +924,7 @@ func update_fcm_provider(provider_id: String, xname: Variant = null, enabled: Va
         return AppwriteException.new("Invalid type for parameter 'service_account_json'. Expected Dictionary.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/fcm/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -907,9 +936,11 @@ func update_fcm_provider(provider_id: String, xname: Variant = null, enabled: Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -976,9 +1007,11 @@ func create_mailgun_provider(provider_id: String, xname: String, api_key: Varian
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1024,7 +1057,7 @@ func update_mailgun_provider(provider_id: String, xname: Variant = null, api_key
         return AppwriteException.new("Invalid type for parameter 'reply_to_email'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/mailgun/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1048,9 +1081,11 @@ func update_mailgun_provider(provider_id: String, xname: Variant = null, api_key
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1097,9 +1132,11 @@ func create_msg91_provider(provider_id: String, xname: String, template_id: Vari
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1133,7 +1170,7 @@ func update_msg91_provider(provider_id: String, xname: Variant = null, enabled: 
         return AppwriteException.new("Invalid type for parameter 'auth_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/msg91/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1149,9 +1186,11 @@ func update_msg91_provider(provider_id: String, xname: Variant = null, enabled: 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1208,9 +1247,11 @@ func create_resend_provider(provider_id: String, xname: String, api_key: Variant
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1250,7 +1291,7 @@ func update_resend_provider(provider_id: String, xname: Variant = null, enabled:
         return AppwriteException.new("Invalid type for parameter 'reply_to_email'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/resend/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1270,9 +1311,11 @@ func update_resend_provider(provider_id: String, xname: Variant = null, enabled:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1329,9 +1372,11 @@ func create_sendgrid_provider(provider_id: String, xname: String, api_key: Varia
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1371,7 +1416,7 @@ func update_sendgrid_provider(provider_id: String, xname: Variant = null, enable
         return AppwriteException.new("Invalid type for parameter 'reply_to_email'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/sendgrid/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1391,9 +1436,156 @@ func update_sendgrid_provider(provider_id: String, xname: Variant = null, enable
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
+
+    return await _call('patch', _path, _headers, _params, model_script)
+
+
+## Create a new Amazon SES provider.[br]
+##[br]
+## Parameters:[br]
+## - [param provider_id] [String]: Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.[br]
+## - [param xname] [String]: Provider name.[br]
+## - [param access_key] [String]: AWS access key ID.[br]
+## - [param secret_key] [String]: AWS secret access key.[br]
+## - [param region] [String]: AWS region, for example us-east-1.[br]
+## - [param from_name] [String]: Sender Name.[br]
+## - [param from_email] [String]: Sender email address.[br]
+## - [param reply_to_name] [String]: Name set in the reply to field for the mail. Default value is sender name.[br]
+## - [param reply_to_email] [String]: Email set in the reply to field for the mail. Default value is sender email.[br]
+## - [param enabled] [bool]: Set as enabled.[br]
+##[br]
+## Returns:[br]
+## - [AppwriteProvider] on success.[br]
+##[br]
+## Errors:[br]
+## - Returns error data as [member AppwriteException].
+func create_ses_provider(provider_id: String, xname: String, access_key: Variant = null, secret_key: Variant = null, region: Variant = null, from_name: Variant = null, from_email: Variant = null, reply_to_name: Variant = null, reply_to_email: Variant = null, enabled: Variant = null) -> Variant :
+    # Runtime type checking, GDScript typed vars don't support null or optional
+    if access_key != null and not access_key is String:
+        return AppwriteException.new("Invalid type for parameter 'access_key'. Expected String.", 0, "argument_error", "")
+    if secret_key != null and not secret_key is String:
+        return AppwriteException.new("Invalid type for parameter 'secret_key'. Expected String.", 0, "argument_error", "")
+    if region != null and not region is String:
+        return AppwriteException.new("Invalid type for parameter 'region'. Expected String.", 0, "argument_error", "")
+    if from_name != null and not from_name is String:
+        return AppwriteException.new("Invalid type for parameter 'from_name'. Expected String.", 0, "argument_error", "")
+    if from_email != null and not from_email is String:
+        return AppwriteException.new("Invalid type for parameter 'from_email'. Expected String.", 0, "argument_error", "")
+    if reply_to_name != null and not reply_to_name is String:
+        return AppwriteException.new("Invalid type for parameter 'reply_to_name'. Expected String.", 0, "argument_error", "")
+    if reply_to_email != null and not reply_to_email is String:
+        return AppwriteException.new("Invalid type for parameter 'reply_to_email'. Expected String.", 0, "argument_error", "")
+    if enabled != null and not enabled is bool:
+        return AppwriteException.new("Invalid type for parameter 'enabled'. Expected bool.", 0, "argument_error", "")
+
+    var _path := '/messaging/providers/ses'
+
+    var _params := {}
+    _params['providerId'] = provider_id
+    _params['name'] = xname
+    if access_key != null:
+        _params['accessKey'] = access_key
+    if secret_key != null:
+        _params['secretKey'] = secret_key
+    if region != null:
+        _params['region'] = region
+    if from_name != null:
+        _params['fromName'] = from_name
+    if from_email != null:
+        _params['fromEmail'] = from_email
+    if reply_to_name != null:
+        _params['replyToName'] = reply_to_name
+    if reply_to_email != null:
+        _params['replyToEmail'] = reply_to_email
+    if enabled != null:
+        _params['enabled'] = enabled
+
+    var _headers := {
+        'content-type': 'application/json',
+        'accept': 'application/json',
+    }
+
+    var model_script = AppwriteProvider
+
+
+    return await _call('post', _path, _headers, _params, model_script)
+
+
+## Update an Amazon SES provider by its unique ID.[br]
+##[br]
+## Parameters:[br]
+## - [param provider_id] [String]: Provider ID.[br]
+## - [param xname] [String]: Provider name.[br]
+## - [param enabled] [bool]: Set as enabled.[br]
+## - [param access_key] [String]: AWS access key ID.[br]
+## - [param secret_key] [String]: AWS secret access key.[br]
+## - [param region] [String]: AWS region, for example us-east-1.[br]
+## - [param from_name] [String]: Sender Name.[br]
+## - [param from_email] [String]: Sender email address.[br]
+## - [param reply_to_name] [String]: Name set in the Reply To field for the mail. Default value is Sender Name.[br]
+## - [param reply_to_email] [String]: Email set in the Reply To field for the mail. Default value is Sender Email.[br]
+##[br]
+## Returns:[br]
+## - [AppwriteProvider] on success.[br]
+##[br]
+## Errors:[br]
+## - Returns error data as [member AppwriteException].
+func update_ses_provider(provider_id: String, xname: Variant = null, enabled: Variant = null, access_key: Variant = null, secret_key: Variant = null, region: Variant = null, from_name: Variant = null, from_email: Variant = null, reply_to_name: Variant = null, reply_to_email: Variant = null) -> Variant :
+    # Runtime type checking, GDScript typed vars don't support null or optional
+    if xname != null and not xname is String:
+        return AppwriteException.new("Invalid type for parameter 'xname'. Expected String.", 0, "argument_error", "")
+    if enabled != null and not enabled is bool:
+        return AppwriteException.new("Invalid type for parameter 'enabled'. Expected bool.", 0, "argument_error", "")
+    if access_key != null and not access_key is String:
+        return AppwriteException.new("Invalid type for parameter 'access_key'. Expected String.", 0, "argument_error", "")
+    if secret_key != null and not secret_key is String:
+        return AppwriteException.new("Invalid type for parameter 'secret_key'. Expected String.", 0, "argument_error", "")
+    if region != null and not region is String:
+        return AppwriteException.new("Invalid type for parameter 'region'. Expected String.", 0, "argument_error", "")
+    if from_name != null and not from_name is String:
+        return AppwriteException.new("Invalid type for parameter 'from_name'. Expected String.", 0, "argument_error", "")
+    if from_email != null and not from_email is String:
+        return AppwriteException.new("Invalid type for parameter 'from_email'. Expected String.", 0, "argument_error", "")
+    if reply_to_name != null and not reply_to_name is String:
+        return AppwriteException.new("Invalid type for parameter 'reply_to_name'. Expected String.", 0, "argument_error", "")
+    if reply_to_email != null and not reply_to_email is String:
+        return AppwriteException.new("Invalid type for parameter 'reply_to_email'. Expected String.", 0, "argument_error", "")
+
+    var _path := '/messaging/providers/ses/{providerId}'
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
+
+    var _params := {}
+    if xname != null:
+        _params['name'] = xname
+    if enabled != null:
+        _params['enabled'] = enabled
+    if access_key != null:
+        _params['accessKey'] = access_key
+    if secret_key != null:
+        _params['secretKey'] = secret_key
+    if region != null:
+        _params['region'] = region
+    if from_name != null:
+        _params['fromName'] = from_name
+    if from_email != null:
+        _params['fromEmail'] = from_email
+    if reply_to_name != null:
+        _params['replyToName'] = reply_to_name
+    if reply_to_email != null:
+        _params['replyToEmail'] = reply_to_email
+
+    var _headers := {
+        'content-type': 'application/json',
+        'accept': 'application/json',
+    }
+
+    var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1477,9 +1669,11 @@ func create_smtp_provider(provider_id: String, xname: String, host: String, port
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1537,7 +1731,7 @@ func update_smtp_provider(provider_id: String, xname: Variant = null, host: Vari
         return AppwriteException.new("Invalid type for parameter 'enabled'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/smtp/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1569,9 +1763,11 @@ func update_smtp_provider(provider_id: String, xname: Variant = null, host: Vari
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1618,9 +1814,11 @@ func create_telesign_provider(provider_id: String, xname: String, from: Variant 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1654,7 +1852,7 @@ func update_telesign_provider(provider_id: String, xname: Variant = null, enable
         return AppwriteException.new("Invalid type for parameter 'from'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/telesign/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1670,9 +1868,11 @@ func update_telesign_provider(provider_id: String, xname: Variant = null, enable
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1719,9 +1919,11 @@ func create_textmagic_provider(provider_id: String, xname: String, from: Variant
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1755,7 +1957,7 @@ func update_textmagic_provider(provider_id: String, xname: Variant = null, enabl
         return AppwriteException.new("Invalid type for parameter 'from'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/textmagic/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1771,9 +1973,11 @@ func update_textmagic_provider(provider_id: String, xname: Variant = null, enabl
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1820,9 +2024,11 @@ func create_twilio_provider(provider_id: String, xname: String, from: Variant = 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1856,7 +2062,7 @@ func update_twilio_provider(provider_id: String, xname: Variant = null, enabled:
         return AppwriteException.new("Invalid type for parameter 'from'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/twilio/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1872,9 +2078,11 @@ func update_twilio_provider(provider_id: String, xname: Variant = null, enabled:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1921,9 +2129,11 @@ func create_vonage_provider(provider_id: String, xname: String, from: Variant = 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1957,7 +2167,7 @@ func update_vonage_provider(provider_id: String, xname: Variant = null, enabled:
         return AppwriteException.new("Invalid type for parameter 'from'. Expected String.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/vonage/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -1973,9 +2183,11 @@ func update_vonage_provider(provider_id: String, xname: Variant = null, enabled:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1995,14 +2207,16 @@ func get_provider(provider_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/providers/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProvider
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2021,7 +2235,7 @@ func delete_provider(provider_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/providers/{providerId}'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
 
@@ -2030,6 +2244,7 @@ func delete_provider(provider_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -2054,7 +2269,7 @@ func list_provider_logs(provider_id: String, queries: Variant = null, total: Var
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/messaging/providers/{providerId}/logs'
-    _path = _path.replace('{providerId}', str(provider_id))
+    _path = _path.replace('{providerId}', provider_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -2063,9 +2278,11 @@ func list_provider_logs(provider_id: String, queries: Variant = null, total: Var
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteLogList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2090,7 +2307,7 @@ func list_subscriber_logs(subscriber_id: String, queries: Variant = null, total:
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/messaging/subscribers/{subscriberId}/logs'
-    _path = _path.replace('{subscriberId}', str(subscriber_id))
+    _path = _path.replace('{subscriberId}', subscriber_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -2099,9 +2316,11 @@ func list_subscriber_logs(subscriber_id: String, queries: Variant = null, total:
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteLogList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2138,9 +2357,11 @@ func list_topics(queries: Variant = null, search: Variant = null, total: Variant
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTopicList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2172,9 +2393,11 @@ func create_topic(topic_id: String, xname: String, subscribe: Variant = null) ->
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTopic
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2194,14 +2417,16 @@ func get_topic(topic_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/topics/{topicId}'
-    _path = _path.replace('{topicId}', str(topic_id))
+    _path = _path.replace('{topicId}', topic_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTopic
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2227,7 +2452,7 @@ func update_topic(topic_id: String, xname: Variant = null, subscribe: Variant = 
         return AppwriteException.new("Invalid type for parameter 'subscribe'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/messaging/topics/{topicId}'
-    _path = _path.replace('{topicId}', str(topic_id))
+    _path = _path.replace('{topicId}', topic_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -2237,9 +2462,11 @@ func update_topic(topic_id: String, xname: Variant = null, subscribe: Variant = 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTopic
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2258,7 +2485,7 @@ func delete_topic(topic_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/topics/{topicId}'
-    _path = _path.replace('{topicId}', str(topic_id))
+    _path = _path.replace('{topicId}', topic_id.uri_encode())
 
     var _params := {}
 
@@ -2267,6 +2494,7 @@ func delete_topic(topic_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -2291,7 +2519,7 @@ func list_topic_logs(topic_id: String, queries: Variant = null, total: Variant =
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/messaging/topics/{topicId}/logs'
-    _path = _path.replace('{topicId}', str(topic_id))
+    _path = _path.replace('{topicId}', topic_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -2300,9 +2528,11 @@ func list_topic_logs(topic_id: String, queries: Variant = null, total: Variant =
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteLogList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2330,7 +2560,7 @@ func list_subscribers(topic_id: String, queries: Variant = null, search: Variant
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/messaging/topics/{topicId}/subscribers'
-    _path = _path.replace('{topicId}', str(topic_id))
+    _path = _path.replace('{topicId}', topic_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -2341,9 +2571,11 @@ func list_subscribers(topic_id: String, queries: Variant = null, search: Variant
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteSubscriberList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2364,7 +2596,7 @@ func create_subscriber(topic_id: String, subscriber_id: String, target_id: Strin
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/topics/{topicId}/subscribers'
-    _path = _path.replace('{topicId}', str(topic_id))
+    _path = _path.replace('{topicId}', topic_id.uri_encode())
 
     var _params := {}
     _params['subscriberId'] = subscriber_id
@@ -2372,9 +2604,11 @@ func create_subscriber(topic_id: String, subscriber_id: String, target_id: Strin
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteSubscriber
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2395,15 +2629,17 @@ func get_subscriber(topic_id: String, subscriber_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/topics/{topicId}/subscribers/{subscriberId}'
-    _path = _path.replace('{topicId}', str(topic_id))
-    _path = _path.replace('{subscriberId}', str(subscriber_id))
+    _path = _path.replace('{topicId}', topic_id.uri_encode())
+    _path = _path.replace('{subscriberId}', subscriber_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteSubscriber
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2423,8 +2659,8 @@ func delete_subscriber(topic_id: String, subscriber_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/messaging/topics/{topicId}/subscribers/{subscriberId}'
-    _path = _path.replace('{topicId}', str(topic_id))
-    _path = _path.replace('{subscriberId}', str(subscriber_id))
+    _path = _path.replace('{topicId}', topic_id.uri_encode())
+    _path = _path.replace('{subscriberId}', subscriber_id.uri_encode())
 
     var _params := {}
 
@@ -2433,6 +2669,7 @@ func delete_subscriber(topic_id: String, subscriber_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 

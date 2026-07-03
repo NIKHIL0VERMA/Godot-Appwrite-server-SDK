@@ -23,8 +23,8 @@ func list(bucket_id: String, file_id: String, queries: Variant = null, total: Va
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tokens/buckets/{bucketId}/files/{fileId}'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-    _path = _path.replace('{fileId}', str(file_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
+    _path = _path.replace('{fileId}', file_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -33,9 +33,11 @@ func list(bucket_id: String, file_id: String, queries: Variant = null, total: Va
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteResourceTokenList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -58,8 +60,8 @@ func create_file_token(bucket_id: String, file_id: String, expire: Variant = nul
         return AppwriteException.new("Invalid type for parameter 'expire'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tokens/buckets/{bucketId}/files/{fileId}'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-    _path = _path.replace('{fileId}', str(file_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
+    _path = _path.replace('{fileId}', file_id.uri_encode())
 
     var _params := {}
     if expire != null:
@@ -67,9 +69,11 @@ func create_file_token(bucket_id: String, file_id: String, expire: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteResourceToken
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -88,14 +92,16 @@ func xget(token_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tokens/{tokenId}'
-    _path = _path.replace('{tokenId}', str(token_id))
+    _path = _path.replace('{tokenId}', token_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteResourceToken
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -117,7 +123,7 @@ func update(token_id: String, expire: Variant = null) -> Variant :
         return AppwriteException.new("Invalid type for parameter 'expire'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tokens/{tokenId}'
-    _path = _path.replace('{tokenId}', str(token_id))
+    _path = _path.replace('{tokenId}', token_id.uri_encode())
 
     var _params := {}
     if expire != null:
@@ -125,9 +131,11 @@ func update(token_id: String, expire: Variant = null) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteResourceToken
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -146,7 +154,7 @@ func delete(token_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tokens/{tokenId}'
-    _path = _path.replace('{tokenId}', str(token_id))
+    _path = _path.replace('{tokenId}', token_id.uri_encode())
 
     var _params := {}
 
@@ -155,6 +163,7 @@ func delete(token_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 

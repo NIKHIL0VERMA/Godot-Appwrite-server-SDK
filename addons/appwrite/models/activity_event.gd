@@ -22,18 +22,6 @@ const _FIELD_MAP := {
     "projectid": "projectId",
     "teamid": "teamId",
     "hostname": "hostname",
-    "oscode": "osCode",
-    "osname": "osName",
-    "osversion": "osVersion",
-    "clienttype": "clientType",
-    "clientcode": "clientCode",
-    "clientname": "clientName",
-    "clientversion": "clientVersion",
-    "clientengine": "clientEngine",
-    "clientengineversion": "clientEngineVersion",
-    "devicename": "deviceName",
-    "devicebrand": "deviceBrand",
-    "devicemodel": "deviceModel",
     "countrycode": "countryCode",
     "countryname": "countryName",
 }
@@ -56,18 +44,6 @@ var time: String ## Log creation date in ISO 8601 format.
 var projectid: String ## Project ID.
 var teamid: String ## Team ID.
 var hostname: String ## Hostname.
-var oscode: String ## Operating system code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/os.json).
-var osname: String ## Operating system name.
-var osversion: String ## Operating system version.
-var clienttype: String ## Client type.
-var clientcode: String ## Client code name. View list of [available options](https://github.com/appwrite/appwrite/blob/master/docs/lists/clients.json).
-var clientname: String ## Client name.
-var clientversion: String ## Client version.
-var clientengine: String ## Client engine name.
-var clientengineversion: String ## Client engine name.
-var devicename: String ## Device name.
-var devicebrand: String ## Device brand name.
-var devicemodel: String ## Device model name.
 var countrycode: String ## Country two-character ISO 3166-1 alpha code.
 var countryname: String ## Country name.
 

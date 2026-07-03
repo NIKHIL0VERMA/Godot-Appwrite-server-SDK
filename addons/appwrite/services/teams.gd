@@ -34,9 +34,11 @@ func list(queries: Variant = null, search: Variant = null, total: Variant = null
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTeamList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -68,9 +70,11 @@ func create(team_id: String, xname: String, roles: Variant = null) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTeam
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -89,14 +93,16 @@ func xget(team_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}'
-    _path = _path.replace('{teamId}', str(team_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTeam
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -116,16 +122,18 @@ func update_name(team_id: String, xname: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}'
-    _path = _path.replace('{teamId}', str(team_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTeam
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -144,7 +152,7 @@ func delete(team_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}'
-    _path = _path.replace('{teamId}', str(team_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
 
     var _params := {}
 
@@ -154,43 +162,8 @@ func delete(team_id: String) -> Variant :
 
     var model_script = null
 
+
     return await _call('delete', _path, _headers, _params, model_script)
-
-
-## Get the team activity logs list by its unique ID.[br]
-##[br]
-## Parameters:[br]
-## - [param team_id] [String]: Team ID.[br]
-## - [param queries] [Array]: Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset[br]
-## - [param total] [bool]: When set to false, the total count returned will be 0 and will not be calculated.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteLogList] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func list_logs(team_id: String, queries: Variant = null, total: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if queries != null and not queries is Array:
-        return AppwriteException.new("Invalid type for parameter 'queries'. Expected Array.", 0, "argument_error", "")
-    if total != null and not total is bool:
-        return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
-
-    var _path := '/teams/{teamId}/logs'
-    _path = _path.replace('{teamId}', str(team_id))
-
-    var _params := {}
-    if queries != null:
-        _params['queries'] = queries
-    if total != null:
-        _params['total'] = total
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteLogList
-
-    return await _call('get', _path, _headers, _params, model_script)
 
 
 ## Use this endpoint to list a team&#039;s members using the team&#039;s ID. All team members have read access to this endpoint. Hide sensitive attributes from the response by toggling membership privacy in the Console.[br]
@@ -216,7 +189,7 @@ func list_memberships(team_id: String, queries: Variant = null, search: Variant 
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/teams/{teamId}/memberships'
-    _path = _path.replace('{teamId}', str(team_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -227,9 +200,11 @@ func list_memberships(team_id: String, queries: Variant = null, search: Variant 
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMembershipList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -271,7 +246,7 @@ func create_membership(team_id: String, roles: Array, email: Variant = null, use
         return AppwriteException.new("Invalid type for parameter 'xname'. Expected String.", 0, "argument_error", "")
 
     var _path := '/teams/{teamId}/memberships'
-    _path = _path.replace('{teamId}', str(team_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
 
     var _params := {}
     if email != null:
@@ -288,9 +263,11 @@ func create_membership(team_id: String, roles: Array, email: Variant = null, use
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMembership
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -310,15 +287,17 @@ func get_membership(team_id: String, membership_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}/memberships/{membershipId}'
-    _path = _path.replace('{teamId}', str(team_id))
-    _path = _path.replace('{membershipId}', str(membership_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
+    _path = _path.replace('{membershipId}', membership_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMembership
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -340,17 +319,19 @@ func update_membership(team_id: String, membership_id: String, roles: Array) -> 
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}/memberships/{membershipId}'
-    _path = _path.replace('{teamId}', str(team_id))
-    _path = _path.replace('{membershipId}', str(membership_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
+    _path = _path.replace('{membershipId}', membership_id.uri_encode())
 
     var _params := {}
     _params['roles'] = roles
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMembership
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -370,8 +351,8 @@ func delete_membership(team_id: String, membership_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}/memberships/{membershipId}'
-    _path = _path.replace('{teamId}', str(team_id))
-    _path = _path.replace('{membershipId}', str(membership_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
+    _path = _path.replace('{membershipId}', membership_id.uri_encode())
 
     var _params := {}
 
@@ -380,6 +361,7 @@ func delete_membership(team_id: String, membership_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -404,8 +386,8 @@ func update_membership_status(team_id: String, membership_id: String, user_id: S
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}/memberships/{membershipId}/status'
-    _path = _path.replace('{teamId}', str(team_id))
-    _path = _path.replace('{membershipId}', str(membership_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
+    _path = _path.replace('{membershipId}', membership_id.uri_encode())
 
     var _params := {}
     _params['userId'] = user_id
@@ -413,9 +395,11 @@ func update_membership_status(team_id: String, membership_id: String, user_id: S
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMembership
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -434,14 +418,16 @@ func get_prefs(team_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}/prefs'
-    _path = _path.replace('{teamId}', str(team_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePreferences
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -461,16 +447,18 @@ func update_prefs(team_id: String, prefs: Dictionary) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/teams/{teamId}/prefs'
-    _path = _path.replace('{teamId}', str(team_id))
+    _path = _path.replace('{teamId}', team_id.uri_encode())
 
     var _params := {}
     _params['prefs'] = prefs
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePreferences
+
 
     return await _call('put', _path, _headers, _params, model_script)
 

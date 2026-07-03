@@ -34,9 +34,11 @@ func list(queries: Variant = null, search: Variant = null, total: Variant = null
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFunctionList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -160,9 +162,11 @@ func create(function_id: String, xname: String, runtime: String, execute: Varian
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFunction
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -182,135 +186,42 @@ func list_runtimes() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRuntimeList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
 
 ## List allowed function specifications for this instance.[br]
 ##[br]
+## Parameters:[br]
+## - [param xtype] [String]: Specification type to list. Can be one of: runtimes, builds.[br]
+##[br]
 ## Returns:[br]
 ## - [AppwriteSpecificationList] on success.[br]
 ##[br]
 ## Errors:[br]
 ## - Returns error data as [member AppwriteException].
-func list_specifications() -> Variant :
+func list_specifications(xtype: Variant = null) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
+    if xtype != null and not xtype is String:
+        return AppwriteException.new("Invalid type for parameter 'xtype'. Expected String.", 0, "argument_error", "")
 
     var _path := '/functions/specifications'
 
     var _params := {}
+    if xtype != null:
+        _params['type'] = xtype
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteSpecificationList
 
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## List available function templates. You can use template details in [createFunction](/docs/references/cloud/server-nodejs/functions#create) method.[br]
-##[br]
-## Parameters:[br]
-## - [param runtimes] [Array[String]]: List of runtimes allowed for filtering function templates. Maximum of 100 runtimes are allowed.[br]
-## - [param use_cases] [Array[String]]: List of use cases allowed for filtering function templates. Maximum of 100 use cases are allowed.[br]
-## - [param limit] [int]: Limit the number of templates returned in the response. Default limit is 25, and maximum limit is 5000.[br]
-## - [param offset] [int]: Offset the list of returned templates. Maximum offset is 5000.[br]
-## - [param total] [bool]: When set to false, the total count returned will be 0 and will not be calculated.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteTemplateFunctionList] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func list_templates(runtimes: Variant = null, use_cases: Variant = null, limit: Variant = null, offset: Variant = null, total: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if runtimes != null and not runtimes is Array:
-        return AppwriteException.new("Invalid type for parameter 'runtimes'. Expected Array[String].", 0, "argument_error", "")
-    if use_cases != null and not use_cases is Array:
-        return AppwriteException.new("Invalid type for parameter 'use_cases'. Expected Array[String].", 0, "argument_error", "")
-    if limit != null and not limit is int:
-        return AppwriteException.new("Invalid type for parameter 'limit'. Expected int.", 0, "argument_error", "")
-    if offset != null and not offset is int:
-        return AppwriteException.new("Invalid type for parameter 'offset'. Expected int.", 0, "argument_error", "")
-    if total != null and not total is bool:
-        return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
-
-    var _path := '/functions/templates'
-
-    var _params := {}
-    if runtimes != null:
-        _params['runtimes'] = runtimes
-    if use_cases != null:
-        _params['useCases'] = use_cases
-    if limit != null:
-        _params['limit'] = limit
-    if offset != null:
-        _params['offset'] = offset
-    if total != null:
-        _params['total'] = total
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteTemplateFunctionList
-
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## Get a function template using ID. You can use template details in [createFunction](/docs/references/cloud/server-nodejs/functions#create) method.[br]
-##[br]
-## Parameters:[br]
-## - [param template_id] [String]: Template ID.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteTemplateFunction] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_template(template_id: String) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-
-    var _path := '/functions/templates/{templateId}'
-    _path = _path.replace('{templateId}', str(template_id))
-
-    var _params := {}
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteTemplateFunction
-
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## Get usage metrics and statistics for all functions in the project. View statistics including total deployments, builds, logs, storage usage, and compute time. The response includes both current totals and historical data for each metric. Use the optional range parameter to specify the time window for historical data: 24h (last 24 hours), 30d (last 30 days), or 90d (last 90 days). If not specified, defaults to 30 days.[br]
-##[br]
-## Parameters:[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageFunctions] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func list_usage(xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/functions/usage'
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageFunctions
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -329,14 +240,16 @@ func xget(function_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFunction
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -416,7 +329,7 @@ func update(function_id: String, xname: String, runtime: Variant = null, execute
         return AppwriteException.new("Invalid type for parameter 'deployment_retention'. Expected int.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -463,9 +376,11 @@ func update(function_id: String, xname: String, runtime: Variant = null, execute
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFunction
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -484,7 +399,7 @@ func delete(function_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
 
@@ -493,6 +408,7 @@ func delete(function_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -512,16 +428,18 @@ func update_function_deployment(function_id: String, deployment_id: String) -> V
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}/deployment'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     _params['deploymentId'] = deployment_id
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFunction
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -549,7 +467,7 @@ func list_deployments(function_id: String, queries: Variant = null, search: Vari
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/deployments'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -560,9 +478,11 @@ func list_deployments(function_id: String, queries: Variant = null, search: Vari
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDeploymentList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -593,7 +513,7 @@ func create_deployment(function_id: String, code: AppwriteInputFile, activate: b
         return AppwriteException.new("Invalid type for parameter 'commands'. Expected String.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/deployments'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     if entrypoint != null:
@@ -605,9 +525,11 @@ func create_deployment(function_id: String, code: AppwriteInputFile, activate: b
 
     var _headers := {
         'content-type': 'multipart/form-data',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDeployment
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -630,7 +552,7 @@ func create_duplicate_deployment(function_id: String, deployment_id: String, bui
         return AppwriteException.new("Invalid type for parameter 'build_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/deployments/duplicate'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     _params['deploymentId'] = deployment_id
@@ -639,9 +561,11 @@ func create_duplicate_deployment(function_id: String, deployment_id: String, bui
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDeployment
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -670,7 +594,7 @@ func create_template_deployment(function_id: String, repository: String, owner: 
         return AppwriteException.new("Invalid type for parameter 'activate'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/deployments/template'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     _params['repository'] = repository
@@ -683,9 +607,11 @@ func create_template_deployment(function_id: String, repository: String, owner: 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDeployment
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -711,7 +637,7 @@ func create_vcs_deployment(function_id: String, xtype: String, reference: String
         return AppwriteException.new("Invalid type for parameter 'activate'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/deployments/vcs'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     _params['type'] = xtype
@@ -721,9 +647,11 @@ func create_vcs_deployment(function_id: String, xtype: String, reference: String
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDeployment
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -743,15 +671,17 @@ func get_deployment(function_id: String, deployment_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}/deployments/{deploymentId}'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{deploymentId}', str(deployment_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{deploymentId}', deployment_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDeployment
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -771,8 +701,8 @@ func delete_deployment(function_id: String, deployment_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}/deployments/{deploymentId}'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{deploymentId}', str(deployment_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{deploymentId}', deployment_id.uri_encode())
 
     var _params := {}
 
@@ -781,6 +711,7 @@ func delete_deployment(function_id: String, deployment_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -803,17 +734,22 @@ func get_deployment_download(function_id: String, deployment_id: String, xtype: 
         return AppwriteException.new("Invalid type for parameter 'xtype'. Expected String.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/deployments/{deploymentId}/download'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{deploymentId}', str(deployment_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{deploymentId}', deployment_id.uri_encode())
 
     var _params := {}
     if xtype != null:
         _params['type'] = xtype
 
     var _headers := {
+        'accept': '*/*',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['key'] = client.get_headers()['x-appwrite-key']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -833,16 +769,18 @@ func update_deployment_status(function_id: String, deployment_id: String) -> Var
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}/deployments/{deploymentId}/status'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{deploymentId}', str(deployment_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{deploymentId}', deployment_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDeployment
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -867,7 +805,7 @@ func list_executions(function_id: String, queries: Variant = null, total: Varian
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/executions'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -876,9 +814,11 @@ func list_executions(function_id: String, queries: Variant = null, total: Varian
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteExecutionList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -915,7 +855,7 @@ func create_execution(function_id: String, body: Variant = null, async: Variant 
         return AppwriteException.new("Invalid type for parameter 'scheduled_at'. Expected String.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/executions'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     if body != null:
@@ -933,9 +873,11 @@ func create_execution(function_id: String, body: Variant = null, async: Variant 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteExecution
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -955,15 +897,17 @@ func get_execution(function_id: String, execution_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}/executions/{executionId}'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{executionId}', str(execution_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{executionId}', execution_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteExecution
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -983,8 +927,8 @@ func delete_execution(function_id: String, execution_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}/executions/{executionId}'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{executionId}', str(execution_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{executionId}', execution_id.uri_encode())
 
     var _params := {}
 
@@ -994,38 +938,8 @@ func delete_execution(function_id: String, execution_id: String) -> Variant :
 
     var model_script = null
 
+
     return await _call('delete', _path, _headers, _params, model_script)
-
-
-## Get usage metrics and statistics for a for a specific function. View statistics including total deployments, builds, executions, storage usage, and compute time. The response includes both current totals and historical data for each metric. Use the optional range parameter to specify the time window for historical data: 24h (last 24 hours), 30d (last 30 days), or 90d (last 90 days). If not specified, defaults to 30 days.[br]
-##[br]
-## Parameters:[br]
-## - [param function_id] [String]: Function ID.[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageFunction] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_usage(function_id: String, xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/functions/{functionId}/usage'
-    _path = _path.replace('{functionId}', str(function_id))
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageFunction
-
-    return await _call('get', _path, _headers, _params, model_script)
 
 
 ## Get a list of all variables of a specific function.[br]
@@ -1048,7 +962,7 @@ func list_variables(function_id: String, queries: Variant = null, total: Variant
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/variables'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -1057,9 +971,11 @@ func list_variables(function_id: String, queries: Variant = null, total: Variant
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteVariableList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -1084,7 +1000,7 @@ func create_variable(function_id: String, variable_id: String, key: String, valu
         return AppwriteException.new("Invalid type for parameter 'secret'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/variables'
-    _path = _path.replace('{functionId}', str(function_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
 
     var _params := {}
     _params['variableId'] = variable_id
@@ -1095,9 +1011,11 @@ func create_variable(function_id: String, variable_id: String, key: String, valu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteVariable
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1117,15 +1035,17 @@ func get_variable(function_id: String, variable_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}/variables/{variableId}'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{variableId}', str(variable_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{variableId}', variable_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteVariable
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -1154,8 +1074,8 @@ func update_variable(function_id: String, variable_id: String, key: Variant = nu
         return AppwriteException.new("Invalid type for parameter 'secret'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/functions/{functionId}/variables/{variableId}'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{variableId}', str(variable_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{variableId}', variable_id.uri_encode())
 
     var _params := {}
     if key != null:
@@ -1167,9 +1087,11 @@ func update_variable(function_id: String, variable_id: String, key: Variant = nu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteVariable
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -1189,8 +1111,8 @@ func delete_variable(function_id: String, variable_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/functions/{functionId}/variables/{variableId}'
-    _path = _path.replace('{functionId}', str(function_id))
-    _path = _path.replace('{variableId}', str(variable_id))
+    _path = _path.replace('{functionId}', function_id.uri_encode())
+    _path = _path.replace('{variableId}', variable_id.uri_encode())
 
     var _params := {}
 
@@ -1199,6 +1121,7 @@ func delete_variable(function_id: String, variable_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 

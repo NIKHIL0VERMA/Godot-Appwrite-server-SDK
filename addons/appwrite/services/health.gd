@@ -17,9 +17,11 @@ func xget() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthStatus
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -39,9 +41,36 @@ func get_antivirus() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthAntivirus
+
+
+    return await _call('get', _path, _headers, _params, model_script)
+
+
+## Check the database that backs the audit and activity store. When the connection is reachable the endpoint returns a passing status with its response time.[br]
+##[br]
+##[br]
+## Returns:[br]
+## - [AppwriteHealthStatusList] on success.[br]
+##[br]
+## Errors:[br]
+## - Returns error data as [member AppwriteException].
+func get_audits_db() -> Variant :
+    # Runtime type checking, GDScript typed vars don't support null or optional
+
+    var _path := '/health/audits-db'
+
+    var _params := {}
+
+    var _headers := {
+        'accept': 'application/json',
+    }
+
+    var model_script = AppwriteHealthStatusList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -61,9 +90,11 @@ func get_cache() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthStatusList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -90,9 +121,11 @@ func get_certificate(domain: Variant = null) -> Variant :
         _params['domain'] = domain
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthCertificate
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -125,9 +158,11 @@ func get_console_pausing(threshold: Variant = null, inactivity_days: Variant = n
         _params['inactivityDays'] = inactivity_days
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthStatus
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -147,9 +182,11 @@ func get_db() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthStatusList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -169,9 +206,11 @@ func get_pub_sub() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthStatusList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -199,9 +238,11 @@ func get_queue_audits(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -228,9 +269,11 @@ func get_queue_billing_project_aggregation(threshold: Variant = null) -> Variant
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -257,9 +300,11 @@ func get_queue_billing_team_aggregation(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -286,38 +331,11 @@ func get_queue_builds(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
 
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## Get the priority builds queue size.[br]
-##[br]
-## Parameters:[br]
-## - [param threshold] [int]: Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 500.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteHealthQueue] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_queue_priority_builds(threshold: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if threshold != null and not threshold is int:
-        return AppwriteException.new("Invalid type for parameter 'threshold'. Expected int.", 0, "argument_error", "")
-
-    var _path := '/health/queue/builds-priority'
-
-    var _params := {}
-    if threshold != null:
-        _params['threshold'] = threshold
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteHealthQueue
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -344,9 +362,11 @@ func get_queue_certificates(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -378,9 +398,11 @@ func get_queue_databases(xname: Variant = null, threshold: Variant = null) -> Va
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -407,9 +429,11 @@ func get_queue_deletes(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -432,16 +456,18 @@ func get_failed_jobs(xname: String, threshold: Variant = null) -> Variant :
         return AppwriteException.new("Invalid type for parameter 'threshold'. Expected int.", 0, "argument_error", "")
 
     var _path := '/health/queue/failed/{name}'
-    _path = _path.replace('{name}', str(xname))
+    _path = _path.replace('{name}', xname.uri_encode())
 
     var _params := {}
     if threshold != null:
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -468,9 +494,11 @@ func get_queue_functions(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -497,9 +525,11 @@ func get_queue_logs(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -526,9 +556,11 @@ func get_queue_mails(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -555,9 +587,11 @@ func get_queue_messaging(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -584,9 +618,11 @@ func get_queue_migrations(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -613,9 +649,11 @@ func get_queue_region_manager(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -642,9 +680,11 @@ func get_queue_stats_resources(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -671,9 +711,11 @@ func get_queue_usage(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -700,9 +742,11 @@ func get_queue_threats(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -729,9 +773,11 @@ func get_queue_webhooks(threshold: Variant = null) -> Variant :
         _params['threshold'] = threshold
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthQueue
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -751,9 +797,11 @@ func get_storage() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthStatus
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -773,9 +821,11 @@ func get_storage_local() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthStatus
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -795,9 +845,11 @@ func get_time() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteHealthTime
+
 
     return await _call('get', _path, _headers, _params, model_script)
 

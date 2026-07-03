@@ -14,6 +14,7 @@ const _FIELD_MAP := {
     "resourcetype": "resourceType",
     "retention": "retention",
     "schedule": "schedule",
+    "xtype": "type",
     "enabled": "enabled",
 }
 
@@ -27,6 +28,7 @@ var resourceid: String ## The resource ID to backup. Set only if this policy sho
 var resourcetype: String ## The resource type to backup. Set only if this policy should backup a single resource.
 var retention: int ## How many days to keep the backup before it will be automatically deleted.
 var schedule: String ## Policy backup schedule in CRON format.
+var xtype: String ## Backup type. Possible values: full (complete database snapshot), incremental (changes since last backup).
 var enabled: bool ## Is this policy enabled.
 
 ## Convert dictionary to model

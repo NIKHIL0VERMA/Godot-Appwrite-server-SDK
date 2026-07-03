@@ -18,6 +18,11 @@ const _FIELD_MAP := {
     "email": "email",
     "phone": "phone",
     "emailverification": "emailVerification",
+    "emailcanonical": "emailCanonical",
+    "emailisfree": "emailIsFree",
+    "emailisdisposable": "emailIsDisposable",
+    "emailiscorporate": "emailIsCorporate",
+    "emailiscanonical": "emailIsCanonical",
     "phoneverification": "phoneVerification",
     "mfa": "mfa",
     "prefs": "prefs",
@@ -41,6 +46,11 @@ var passwordupdate: String ## Password update time in ISO 8601 format.
 var email: String ## User email address.
 var phone: String ## User phone number in E.164 format.
 var emailverification: bool ## Email verification status.
+var emailcanonical: String ## Canonical form of the user email address.
+var emailisfree: bool ## Whether the user email is from a free email provider.
+var emailisdisposable: bool ## Whether the user email is from a disposable email provider.
+var emailiscorporate: bool ## Whether the user email is from a corporate domain.
+var emailiscanonical: bool ## Whether the user email is in its canonical form.
 var phoneverification: bool ## Phone verification status.
 var mfa: bool ## Multi factor authentication status.
 var prefs: Dictionary ## User preferences as a key-value object

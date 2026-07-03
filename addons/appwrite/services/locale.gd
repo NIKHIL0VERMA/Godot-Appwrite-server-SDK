@@ -19,9 +19,11 @@ func xget() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteLocale
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -41,9 +43,11 @@ func list_codes() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteLocaleCodeList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -63,9 +67,11 @@ func list_continents() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteContinentList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -85,9 +91,11 @@ func list_countries() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteCountryList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -107,9 +115,11 @@ func list_countries_eu() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteCountryList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -129,9 +139,11 @@ func list_countries_phones() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePhoneList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -151,9 +163,11 @@ func list_currencies() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteCurrencyList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -173,9 +187,11 @@ func list_languages() -> Variant :
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteLanguageList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 

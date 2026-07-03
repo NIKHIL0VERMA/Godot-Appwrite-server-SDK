@@ -30,9 +30,11 @@ func list_reports(queries: Variant = null, total: Variant = null) -> Variant :
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteReportList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -52,14 +54,16 @@ func get_report(report_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/reports/{reportId}'
-    _path = _path.replace('{reportId}', str(report_id))
+    _path = _path.replace('{reportId}', report_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteReport
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -79,7 +83,7 @@ func delete_report(report_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/reports/{reportId}'
-    _path = _path.replace('{reportId}', str(report_id))
+    _path = _path.replace('{reportId}', report_id.uri_encode())
 
     var _params := {}
 
@@ -88,6 +92,7 @@ func delete_report(report_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -113,7 +118,7 @@ func list_insights(report_id: String, queries: Variant = null, total: Variant = 
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/reports/{reportId}/insights'
-    _path = _path.replace('{reportId}', str(report_id))
+    _path = _path.replace('{reportId}', report_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -122,9 +127,11 @@ func list_insights(report_id: String, queries: Variant = null, total: Variant = 
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteInsightList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -145,15 +152,17 @@ func get_insight(report_id: String, insight_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/reports/{reportId}/insights/{insightId}'
-    _path = _path.replace('{reportId}', str(report_id))
-    _path = _path.replace('{insightId}', str(insight_id))
+    _path = _path.replace('{reportId}', report_id.uri_encode())
+    _path = _path.replace('{insightId}', insight_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteInsight
+
 
     return await _call('get', _path, _headers, _params, model_script)
 

@@ -115,25 +115,31 @@ static func updated_between(start: String, end: String) -> String:
 static func or_query(queries: Array) -> String:
     var parsed_queries := []
     for q in queries:
-        var parsed = JSON.parse_string(q)
-        if parsed != null:
-            parsed_queries.append(parsed)
+        var json := JSON.new()
+        var err := json.parse(q)
+        if err != OK:
+            continue
+        parsed_queries.append(json.data)
     return AppwriteQuery.new("or", null, parsed_queries)._to_string()
 
 static func and_query(queries: Array) -> String:
     var parsed_queries := []
     for q in queries:
-        var parsed = JSON.parse_string(q)
-        if parsed != null:
-            parsed_queries.append(parsed)
+        var json := JSON.new()
+        var err := json.parse(q)
+        if err != OK:
+            continue
+        parsed_queries.append(json.data)
     return AppwriteQuery.new("and", null, parsed_queries)._to_string()
 
 static func elem_match(attribute: String, queries: Array) -> String:
     var parsed_queries := []
     for q in queries:
-        var parsed = JSON.parse_string(q)
-        if parsed != null:
-            parsed_queries.append(parsed)
+        var json := JSON.new()
+        var err := json.parse(q)
+        if err != OK:
+            continue
+        parsed_queries.append(json.data)
     return AppwriteQuery.new("elemMatch", attribute, parsed_queries)._to_string()
 
 static func select(attributes: Array) -> String:

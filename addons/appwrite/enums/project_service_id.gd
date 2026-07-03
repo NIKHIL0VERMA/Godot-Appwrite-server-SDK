@@ -18,6 +18,7 @@ const GRAPHQL = "graphql"
 const MIGRATIONS = "migrations"
 const MESSAGING = "messaging"
 const ADVISOR = "advisor"
+const OAUTH2 = "oauth2"
 
 ## Validate if value is in enum
 static func is_valid(value: String) -> bool:
@@ -44,4 +45,5 @@ static func values() -> Array[String]:
                 "migrations",
                 "messaging",
                 "advisor",
+                "oauth2",
             ]

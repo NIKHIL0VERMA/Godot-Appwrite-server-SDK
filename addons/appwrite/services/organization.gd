@@ -1,5 +1,5 @@
 extends "../utils/service.gd"
-## Service class.
+## The Organization service allows you to manage organization-level projects.
 
 
 ## Get a list of all API keys from the current organization.[br]
@@ -29,9 +29,11 @@ func list_keys(queries: Variant = null, total: Variant = null) -> Variant :
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteKeyList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -65,9 +67,11 @@ func create_key(key_id: String, xname: String, scopes: Array[String], expire: Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteKey
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -86,14 +90,16 @@ func get_key(key_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/organization/keys/{keyId}'
-    _path = _path.replace('{keyId}', str(key_id))
+    _path = _path.replace('{keyId}', key_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteKey
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -117,7 +123,7 @@ func update_key(key_id: String, xname: String, scopes: Array[String], expire: Va
         return AppwriteException.new("Invalid type for parameter 'expire'. Expected String.", 0, "argument_error", "")
 
     var _path := '/organization/keys/{keyId}'
-    _path = _path.replace('{keyId}', str(key_id))
+    _path = _path.replace('{keyId}', key_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -127,9 +133,11 @@ func update_key(key_id: String, xname: String, scopes: Array[String], expire: Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteKey
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -148,7 +156,7 @@ func delete_key(key_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/organization/keys/{keyId}'
-    _path = _path.replace('{keyId}', str(key_id))
+    _path = _path.replace('{keyId}', key_id.uri_encode())
 
     var _params := {}
 
@@ -157,6 +165,7 @@ func delete_key(key_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -193,9 +202,11 @@ func list_projects(queries: Variant = null, search: Variant = null, total: Varia
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProjectList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -227,9 +238,11 @@ func create_project(project_id: String, xname: String, region: Variant = null) -
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -248,7 +261,7 @@ func get_project(project_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/organization/projects/{projectId}'
-    _path = _path.replace('{projectId}', str(project_id))
+    _path = _path.replace('{projectId}', project_id.uri_encode())
 
     var _params := {}
 
@@ -256,6 +269,7 @@ func get_project(project_id: String) -> Variant :
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -275,16 +289,18 @@ func update_project(project_id: String, xname: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/organization/projects/{projectId}'
-    _path = _path.replace('{projectId}', str(project_id))
+    _path = _path.replace('{projectId}', project_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteProject
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -303,7 +319,7 @@ func delete_project(project_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/organization/projects/{projectId}'
-    _path = _path.replace('{projectId}', str(project_id))
+    _path = _path.replace('{projectId}', project_id.uri_encode())
 
     var _params := {}
 
@@ -312,6 +328,7 @@ func delete_project(project_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 

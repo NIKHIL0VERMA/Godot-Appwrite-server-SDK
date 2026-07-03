@@ -34,9 +34,11 @@ func list(queries: Variant = null, search: Variant = null, total: Variant = null
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUserList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -81,9 +83,11 @@ func create(user_id: String, email: Variant = null, phone: Variant = null, passw
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -117,9 +121,11 @@ func create_argon2_user(user_id: String, email: String, password: String, xname:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -153,9 +159,11 @@ func create_bcrypt_user(user_id: String, email: String, password: String, xname:
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -192,9 +200,11 @@ func list_identities(queries: Variant = null, search: Variant = null, total: Var
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteIdentityList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -213,7 +223,7 @@ func delete_identity(identity_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/identities/{identityId}'
-    _path = _path.replace('{identityId}', str(identity_id))
+    _path = _path.replace('{identityId}', identity_id.uri_encode())
 
     var _params := {}
 
@@ -222,6 +232,7 @@ func delete_identity(identity_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -255,9 +266,11 @@ func create_md5_user(user_id: String, email: String, password: String, xname: Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -291,9 +304,11 @@ func create_ph_pass_user(user_id: String, email: String, password: String, xname
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -337,9 +352,11 @@ func create_scrypt_user(user_id: String, email: String, password: String, passwo
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -379,9 +396,11 @@ func create_scrypt_modified_user(user_id: String, email: String, password: Strin
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -420,41 +439,13 @@ func create_sha_user(user_id: String, email: String, password: String, password_
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
 
+
     return await _call('post', _path, _headers, _params, model_script)
-
-
-## Get usage metrics and statistics for all users in the project. You can view the total number of users and sessions. The response includes both current totals and historical data over time. Use the optional range parameter to specify the time window for historical data: 24h (last 24 hours), 30d (last 30 days), or 90d (last 90 days). If not specified, range defaults to 30 days.[br]
-##[br]
-##[br]
-## Parameters:[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageUsers] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_usage(xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/users/usage'
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageUsers
-
-    return await _call('get', _path, _headers, _params, model_script)
 
 
 ## Get a user by its unique ID.[br]
@@ -471,14 +462,16 @@ func xget(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -497,7 +490,7 @@ func delete(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
@@ -506,6 +499,7 @@ func delete(user_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -525,16 +519,18 @@ func update_email(user_id: String, email: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/email'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['email'] = email
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -555,16 +551,18 @@ func update_impersonator(user_id: String, impersonator: bool) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/impersonator'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['impersonator'] = impersonator
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -589,7 +587,7 @@ func create_jwt(user_id: String, session_id: Variant = null, duration: Variant =
         return AppwriteException.new("Invalid type for parameter 'duration'. Expected int.", 0, "argument_error", "")
 
     var _path := '/users/{userId}/jwts'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     if session_id != null:
@@ -599,9 +597,11 @@ func create_jwt(user_id: String, session_id: Variant = null, duration: Variant =
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteJwt
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -623,16 +623,18 @@ func update_labels(user_id: String, labels: Array) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/labels'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['labels'] = labels
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -657,7 +659,7 @@ func list_logs(user_id: String, queries: Variant = null, total: Variant = null) 
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/users/{userId}/logs'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -666,9 +668,11 @@ func list_logs(user_id: String, queries: Variant = null, total: Variant = null) 
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteLogList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -696,7 +700,7 @@ func list_memberships(user_id: String, queries: Variant = null, search: Variant 
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/users/{userId}/memberships'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -707,9 +711,11 @@ func list_memberships(user_id: String, queries: Variant = null, search: Variant 
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMembershipList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -729,16 +735,18 @@ func update_mfa(user_id: String, mfa: bool) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/mfa'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['mfa'] = mfa
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -758,8 +766,8 @@ func delete_mfa_authenticator(user_id: String, xtype: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/mfa/authenticators/{type}'
-    _path = _path.replace('{userId}', str(user_id))
-    _path = _path.replace('{type}', str(xtype))
+    _path = _path.replace('{userId}', user_id.uri_encode())
+    _path = _path.replace('{type}', xtype.uri_encode())
 
     var _params := {}
 
@@ -768,6 +776,7 @@ func delete_mfa_authenticator(user_id: String, xtype: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -786,14 +795,16 @@ func list_mfa_factors(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/mfa/factors'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMfaFactors
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -812,14 +823,16 @@ func get_mfa_recovery_codes(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/mfa/recovery-codes'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMfaRecoveryCodes
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -838,15 +851,17 @@ func update_mfa_recovery_codes(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/mfa/recovery-codes'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMfaRecoveryCodes
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -865,15 +880,17 @@ func create_mfa_recovery_codes(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/mfa/recovery-codes'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteMfaRecoveryCodes
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -893,16 +910,18 @@ func update_name(user_id: String, xname: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/name'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -922,16 +941,18 @@ func update_password(user_id: String, password: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/password'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['password'] = password
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -951,16 +972,18 @@ func update_phone(user_id: String, number: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/phone'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['number'] = number
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -979,14 +1002,16 @@ func get_prefs(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/prefs'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePreferences
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -1006,16 +1031,18 @@ func update_prefs(user_id: String, prefs: Dictionary) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/prefs'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['prefs'] = prefs
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePreferences
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1037,16 +1064,18 @@ func list_sessions(user_id: String, total: Variant = null) -> Variant :
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/users/{userId}/sessions'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     if total != null:
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteSessionList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -1067,15 +1096,17 @@ func create_session(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/sessions'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteSession
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1094,7 +1125,7 @@ func delete_sessions(user_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/sessions'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
 
@@ -1103,6 +1134,7 @@ func delete_sessions(user_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -1122,8 +1154,8 @@ func delete_session(user_id: String, session_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/sessions/{sessionId}'
-    _path = _path.replace('{userId}', str(user_id))
-    _path = _path.replace('{sessionId}', str(session_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
+    _path = _path.replace('{sessionId}', session_id.uri_encode())
 
     var _params := {}
 
@@ -1132,6 +1164,7 @@ func delete_session(user_id: String, session_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -1151,16 +1184,18 @@ func update_status(user_id: String, status: bool) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/status'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['status'] = status
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1185,7 +1220,7 @@ func list_targets(user_id: String, queries: Variant = null, total: Variant = nul
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/users/{userId}/targets'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -1194,9 +1229,11 @@ func list_targets(user_id: String, queries: Variant = null, total: Variant = nul
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTargetList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -1224,7 +1261,7 @@ func create_target(user_id: String, target_id: String, provider_type: String, id
         return AppwriteException.new("Invalid type for parameter 'xname'. Expected String.", 0, "argument_error", "")
 
     var _path := '/users/{userId}/targets'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['targetId'] = target_id
@@ -1237,9 +1274,11 @@ func create_target(user_id: String, target_id: String, provider_type: String, id
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTarget
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1259,15 +1298,17 @@ func get_target(user_id: String, target_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/targets/{targetId}'
-    _path = _path.replace('{userId}', str(user_id))
-    _path = _path.replace('{targetId}', str(target_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
+    _path = _path.replace('{targetId}', target_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTarget
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -1296,8 +1337,8 @@ func update_target(user_id: String, target_id: String, identifier: Variant = nul
         return AppwriteException.new("Invalid type for parameter 'xname'. Expected String.", 0, "argument_error", "")
 
     var _path := '/users/{userId}/targets/{targetId}'
-    _path = _path.replace('{userId}', str(user_id))
-    _path = _path.replace('{targetId}', str(target_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
+    _path = _path.replace('{targetId}', target_id.uri_encode())
 
     var _params := {}
     if identifier != null:
@@ -1309,9 +1350,11 @@ func update_target(user_id: String, target_id: String, identifier: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTarget
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1331,8 +1374,8 @@ func delete_target(user_id: String, target_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/targets/{targetId}'
-    _path = _path.replace('{userId}', str(user_id))
-    _path = _path.replace('{targetId}', str(target_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
+    _path = _path.replace('{targetId}', target_id.uri_encode())
 
     var _params := {}
 
@@ -1341,6 +1384,7 @@ func delete_target(user_id: String, target_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -1366,7 +1410,7 @@ func create_token(user_id: String, length: Variant = null, expire: Variant = nul
         return AppwriteException.new("Invalid type for parameter 'expire'. Expected int.", 0, "argument_error", "")
 
     var _path := '/users/{userId}/tokens'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     if length != null:
@@ -1376,9 +1420,11 @@ func create_token(user_id: String, length: Variant = null, expire: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteToken
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1398,16 +1444,18 @@ func update_email_verification(user_id: String, email_verification: bool) -> Var
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/verification'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['emailVerification'] = email_verification
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1427,16 +1475,18 @@ func update_phone_verification(user_id: String, phone_verification: bool) -> Var
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/users/{userId}/verification/phone'
-    _path = _path.replace('{userId}', str(user_id))
+    _path = _path.replace('{userId}', user_id.uri_encode())
 
     var _params := {}
     _params['phoneVerification'] = phone_verification
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteUser
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 

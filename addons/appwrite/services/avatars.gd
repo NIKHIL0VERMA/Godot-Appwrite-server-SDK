@@ -27,7 +27,7 @@ func get_browser(code: String, width: Variant = null, height: Variant = null, qu
         return AppwriteException.new("Invalid type for parameter 'quality'. Expected int.", 0, "argument_error", "")
 
     var _path := '/avatars/browsers/{code}'
-    _path = _path.replace('{code}', str(code))
+    _path = _path.replace('{code}', code.uri_encode())
 
     var _params := {}
     if width != null:
@@ -38,9 +38,14 @@ func get_browser(code: String, width: Variant = null, height: Variant = null, qu
         _params['quality'] = quality
 
     var _headers := {
+        'accept': 'image/png',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -71,7 +76,7 @@ func get_credit_card(code: String, width: Variant = null, height: Variant = null
         return AppwriteException.new("Invalid type for parameter 'quality'. Expected int.", 0, "argument_error", "")
 
     var _path := '/avatars/credit-cards/{code}'
-    _path = _path.replace('{code}', str(code))
+    _path = _path.replace('{code}', code.uri_encode())
 
     var _params := {}
     if width != null:
@@ -82,9 +87,14 @@ func get_credit_card(code: String, width: Variant = null, height: Variant = null
         _params['quality'] = quality
 
     var _headers := {
+        'accept': 'image/png',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -110,9 +120,14 @@ func get_favicon(url: String) -> Variant :
     _params['url'] = url
 
     var _headers := {
+        'accept': 'image/*',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -143,7 +158,7 @@ func get_flag(code: String, width: Variant = null, height: Variant = null, quali
         return AppwriteException.new("Invalid type for parameter 'quality'. Expected int.", 0, "argument_error", "")
 
     var _path := '/avatars/flags/{code}'
-    _path = _path.replace('{code}', str(code))
+    _path = _path.replace('{code}', code.uri_encode())
 
     var _params := {}
     if width != null:
@@ -154,9 +169,14 @@ func get_flag(code: String, width: Variant = null, height: Variant = null, quali
         _params['quality'] = quality
 
     var _headers := {
+        'accept': 'image/png',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -194,9 +214,14 @@ func get_image(url: String, width: Variant = null, height: Variant = null) -> Va
         _params['height'] = height
 
     var _headers := {
+        'accept': 'image/*',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -243,9 +268,14 @@ func get_initials(xname: Variant = null, width: Variant = null, height: Variant 
         _params['background'] = background
 
     var _headers := {
+        'accept': 'image/png',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -285,9 +315,14 @@ func get_qr(text: String, size: Variant = null, margin: Variant = null, download
         _params['download'] = download
 
     var _headers := {
+        'accept': 'image/png',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -410,9 +445,14 @@ func get_screenshot(url: String, headers: Variant = null, viewport_width: Varian
         _params['output'] = output
 
     var _headers := {
+        'accept': 'image/png',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 

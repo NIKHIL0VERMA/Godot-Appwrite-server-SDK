@@ -35,39 +35,11 @@ func list(queries: Variant = null, total: Variant = null, ttl: Variant = null) -
         _params['ttl'] = ttl
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePresenceList
 
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## Get presence usage metrics, including the current total of online users and historical online user counts for the selected time range.[br]
-##[br]
-##[br]
-## Parameters:[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsagePresence] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_usage(xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/presences/usage'
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsagePresence
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -87,14 +59,16 @@ func xget(presence_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/presences/{presenceId}'
-    _path = _path.replace('{presenceId}', str(presence_id))
+    _path = _path.replace('{presenceId}', presence_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePresence
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -125,7 +99,7 @@ func upsert(presence_id: String, user_id: String, status: String, permissions: V
         return AppwriteException.new("Invalid type for parameter 'metadata'. Expected Dictionary.", 0, "argument_error", "")
 
     var _path := '/presences/{presenceId}'
-    _path = _path.replace('{presenceId}', str(presence_id))
+    _path = _path.replace('{presenceId}', presence_id.uri_encode())
 
     var _params := {}
     _params['userId'] = user_id
@@ -139,9 +113,11 @@ func upsert(presence_id: String, user_id: String, status: String, permissions: V
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePresence
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -163,7 +139,7 @@ func upsert(presence_id: String, user_id: String, status: String, permissions: V
 ##[br]
 ## Errors:[br]
 ## - Returns error data as [member AppwriteException].
-func update_presence(presence_id: String, user_id: String, status: Variant = null, expires_at: Variant = null, metadata: Variant = null, permissions: Variant = null, purge: Variant = null) -> Variant :
+func update(presence_id: String, user_id: String, status: Variant = null, expires_at: Variant = null, metadata: Variant = null, permissions: Variant = null, purge: Variant = null) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
     if status != null and not status is String:
         return AppwriteException.new("Invalid type for parameter 'status'. Expected String.", 0, "argument_error", "")
@@ -177,7 +153,7 @@ func update_presence(presence_id: String, user_id: String, status: Variant = nul
         return AppwriteException.new("Invalid type for parameter 'purge'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/presences/{presenceId}'
-    _path = _path.replace('{presenceId}', str(presence_id))
+    _path = _path.replace('{presenceId}', presence_id.uri_encode())
 
     var _params := {}
     _params['userId'] = user_id
@@ -194,9 +170,11 @@ func update_presence(presence_id: String, user_id: String, status: Variant = nul
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwritePresence
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -216,7 +194,7 @@ func delete(presence_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/presences/{presenceId}'
-    _path = _path.replace('{presenceId}', str(presence_id))
+    _path = _path.replace('{presenceId}', presence_id.uri_encode())
 
     var _params := {}
 
@@ -225,6 +203,7 @@ func delete(presence_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 

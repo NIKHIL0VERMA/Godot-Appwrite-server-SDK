@@ -29,9 +29,11 @@ func list(queries: Variant = null, total: Variant = null) -> Variant :
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteWebhookList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -87,9 +89,11 @@ func create(webhook_id: String, url: String, xname: String, events: Array, enabl
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteWebhook
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -108,14 +112,16 @@ func xget(webhook_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/webhooks/{webhookId}'
-    _path = _path.replace('{webhookId}', str(webhook_id))
+    _path = _path.replace('{webhookId}', webhook_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteWebhook
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -149,7 +155,7 @@ func update(webhook_id: String, xname: String, url: String, events: Array, enabl
         return AppwriteException.new("Invalid type for parameter 'auth_password'. Expected String.", 0, "argument_error", "")
 
     var _path := '/webhooks/{webhookId}'
-    _path = _path.replace('{webhookId}', str(webhook_id))
+    _path = _path.replace('{webhookId}', webhook_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -166,9 +172,11 @@ func update(webhook_id: String, xname: String, url: String, events: Array, enabl
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteWebhook
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -187,7 +195,7 @@ func delete(webhook_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/webhooks/{webhookId}'
-    _path = _path.replace('{webhookId}', str(webhook_id))
+    _path = _path.replace('{webhookId}', webhook_id.uri_encode())
 
     var _params := {}
 
@@ -196,6 +204,7 @@ func delete(webhook_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -217,7 +226,7 @@ func update_secret(webhook_id: String, secret: Variant = null) -> Variant :
         return AppwriteException.new("Invalid type for parameter 'secret'. Expected String.", 0, "argument_error", "")
 
     var _path := '/webhooks/{webhookId}/secret'
-    _path = _path.replace('{webhookId}', str(webhook_id))
+    _path = _path.replace('{webhookId}', webhook_id.uri_encode())
 
     var _params := {}
     if secret != null:
@@ -225,9 +234,11 @@ func update_secret(webhook_id: String, secret: Variant = null) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteWebhook
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 

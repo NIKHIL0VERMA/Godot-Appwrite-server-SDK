@@ -34,9 +34,11 @@ func list(queries: Variant = null, search: Variant = null, total: Variant = null
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDatabaseList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -48,16 +50,19 @@ func list(queries: Variant = null, search: Variant = null, total: Variant = null
 ## - [param database_id] [String]: Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.[br]
 ## - [param xname] [String]: Database name. Max length: 128 chars.[br]
 ## - [param enabled] [bool]: Is the database enabled? When set to &#039;disabled&#039;, users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.[br]
+## - [param dedicated_database_id] [String]: Optional dedicated database (compute) ID to attach this database to. Leave empty to create a database on the shared pool.[br]
 ##[br]
 ## Returns:[br]
 ## - [AppwriteDatabase] on success.[br]
 ##[br]
 ## Errors:[br]
 ## - Returns error data as [member AppwriteException].
-func create(database_id: String, xname: String, enabled: Variant = null) -> Variant :
+func create(database_id: String, xname: String, enabled: Variant = null, dedicated_database_id: Variant = null) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
     if enabled != null and not enabled is bool:
         return AppwriteException.new("Invalid type for parameter 'enabled'. Expected bool.", 0, "argument_error", "")
+    if dedicated_database_id != null and not dedicated_database_id is String:
+        return AppwriteException.new("Invalid type for parameter 'dedicated_database_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb'
 
@@ -66,12 +71,16 @@ func create(database_id: String, xname: String, enabled: Variant = null) -> Vari
     _params['name'] = xname
     if enabled != null:
         _params['enabled'] = enabled
+    if dedicated_database_id != null:
+        _params['dedicatedDatabaseId'] = dedicated_database_id
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDatabase
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -98,9 +107,11 @@ func list_transactions(queries: Variant = null) -> Variant :
         _params['queries'] = queries
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTransactionList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -128,9 +139,11 @@ func create_transaction(ttl: Variant = null) -> Variant :
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTransaction
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -149,14 +162,16 @@ func get_transaction(transaction_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/transactions/{transactionId}'
-    _path = _path.replace('{transactionId}', str(transaction_id))
+    _path = _path.replace('{transactionId}', transaction_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTransaction
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -181,7 +196,7 @@ func update_transaction(transaction_id: String, commit: Variant = null, rollback
         return AppwriteException.new("Invalid type for parameter 'rollback'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/transactions/{transactionId}'
-    _path = _path.replace('{transactionId}', str(transaction_id))
+    _path = _path.replace('{transactionId}', transaction_id.uri_encode())
 
     var _params := {}
     if commit != null:
@@ -191,9 +206,11 @@ func update_transaction(transaction_id: String, commit: Variant = null, rollback
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTransaction
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -212,7 +229,7 @@ func delete_transaction(transaction_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/transactions/{transactionId}'
-    _path = _path.replace('{transactionId}', str(transaction_id))
+    _path = _path.replace('{transactionId}', transaction_id.uri_encode())
 
     var _params := {}
 
@@ -221,6 +238,7 @@ func delete_transaction(transaction_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -242,7 +260,7 @@ func create_operations(transaction_id: String, operations: Variant = null) -> Va
         return AppwriteException.new("Invalid type for parameter 'operations'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/tablesdb/transactions/{transactionId}/operations'
-    _path = _path.replace('{transactionId}', str(transaction_id))
+    _path = _path.replace('{transactionId}', transaction_id.uri_encode())
 
     var _params := {}
     if operations != null:
@@ -250,40 +268,13 @@ func create_operations(transaction_id: String, operations: Variant = null) -> Va
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTransaction
 
+
     return await _call('post', _path, _headers, _params, model_script)
-
-
-## List usage metrics and statistics for all databases in the project. You can view the total number of databases, tables, rows, and storage usage. The response includes both current totals and historical data over time. Use the optional range parameter to specify the time window for historical data: 24h (last 24 hours), 30d (last 30 days), or 90d (last 90 days). If not specified, range defaults to 30 days.[br]
-##[br]
-## Parameters:[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageDatabases] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func list_usage(xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/tablesdb/usage'
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageDatabases
-
-    return await _call('get', _path, _headers, _params, model_script)
 
 
 ## Get a database by its unique ID. This endpoint response returns a JSON object with the database metadata.[br]
@@ -300,14 +291,16 @@ func xget(database_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/{databaseId}'
-    _path = _path.replace('{databaseId}', str(database_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDatabase
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -332,7 +325,7 @@ func update(database_id: String, xname: Variant = null, enabled: Variant = null)
         return AppwriteException.new("Invalid type for parameter 'enabled'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}'
-    _path = _path.replace('{databaseId}', str(database_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -342,9 +335,11 @@ func update(database_id: String, xname: Variant = null, enabled: Variant = null)
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteDatabase
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -363,7 +358,7 @@ func delete(database_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/{databaseId}'
-    _path = _path.replace('{databaseId}', str(database_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
 
     var _params := {}
 
@@ -372,6 +367,7 @@ func delete(database_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -399,7 +395,7 @@ func list_tables(database_id: String, queries: Variant = null, search: Variant =
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables'
-    _path = _path.replace('{databaseId}', str(database_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -410,9 +406,11 @@ func list_tables(database_id: String, queries: Variant = null, search: Variant =
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTableList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -448,7 +446,7 @@ func create_table(database_id: String, table_id: String, xname: String, permissi
         return AppwriteException.new("Invalid type for parameter 'indexes'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables'
-    _path = _path.replace('{databaseId}', str(database_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
 
     var _params := {}
     _params['tableId'] = table_id
@@ -466,9 +464,11 @@ func create_table(database_id: String, table_id: String, xname: String, permissi
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTable
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -488,15 +488,17 @@ func get_table(database_id: String, table_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTable
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -531,8 +533,8 @@ func update_table(database_id: String, table_id: String, xname: Variant = null, 
         return AppwriteException.new("Invalid type for parameter 'purge'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -548,9 +550,11 @@ func update_table(database_id: String, table_id: String, xname: Variant = null, 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteTable
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -570,8 +574,8 @@ func delete_table(database_id: String, table_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
 
@@ -580,6 +584,7 @@ func delete_table(database_id: String, table_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -605,8 +610,8 @@ func list_columns(database_id: String, table_id: String, queries: Variant = null
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -615,9 +620,11 @@ func list_columns(database_id: String, table_id: String, queries: Variant = null
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -652,8 +659,8 @@ func create_big_int_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -669,9 +676,11 @@ func create_big_int_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnBigint
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -704,9 +713,9 @@ func update_big_int_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -720,9 +729,11 @@ func update_big_int_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnBigint
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -751,8 +762,8 @@ func create_boolean_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -764,9 +775,11 @@ func create_boolean_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnBoolean
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -792,9 +805,9 @@ func update_boolean_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -804,9 +817,11 @@ func update_boolean_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnBoolean
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -834,8 +849,8 @@ func create_datetime_column(database_id: String, table_id: String, key: String, 
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -847,9 +862,11 @@ func create_datetime_column(database_id: String, table_id: String, key: String, 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnDatetime
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -875,9 +892,9 @@ func update_datetime_column(database_id: String, table_id: String, key: String, 
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -887,9 +904,11 @@ func update_datetime_column(database_id: String, table_id: String, key: String, 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnDatetime
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -918,8 +937,8 @@ func create_email_column(database_id: String, table_id: String, key: String, req
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/email'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -931,9 +950,11 @@ func create_email_column(database_id: String, table_id: String, key: String, req
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnEmail
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -960,9 +981,9 @@ func update_email_column(database_id: String, table_id: String, key: String, req
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/email/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -972,9 +993,11 @@ func update_email_column(database_id: String, table_id: String, key: String, req
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnEmail
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1003,8 +1026,8 @@ func create_enum_column(database_id: String, table_id: String, key: String, elem
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/enum'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1017,9 +1040,11 @@ func create_enum_column(database_id: String, table_id: String, key: String, elem
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnEnum
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1047,9 +1072,9 @@ func update_enum_column(database_id: String, table_id: String, key: String, elem
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/enum/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['elements'] = elements
@@ -1060,9 +1085,11 @@ func update_enum_column(database_id: String, table_id: String, key: String, elem
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnEnum
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1097,8 +1124,8 @@ func create_float_column(database_id: String, table_id: String, key: String, req
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/float'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1114,9 +1141,11 @@ func create_float_column(database_id: String, table_id: String, key: String, req
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnFloat
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1149,9 +1178,9 @@ func update_float_column(database_id: String, table_id: String, key: String, req
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/float/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1165,9 +1194,11 @@ func update_float_column(database_id: String, table_id: String, key: String, req
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnFloat
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1202,8 +1233,8 @@ func create_integer_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/integer'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1219,9 +1250,11 @@ func create_integer_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnInteger
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1254,9 +1287,9 @@ func update_integer_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/integer/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1270,9 +1303,11 @@ func update_integer_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnInteger
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1301,8 +1336,8 @@ func create_ip_column(database_id: String, table_id: String, key: String, requir
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/ip'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1314,9 +1349,11 @@ func create_ip_column(database_id: String, table_id: String, key: String, requir
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnIp
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1343,9 +1380,9 @@ func update_ip_column(database_id: String, table_id: String, key: String, requir
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/ip/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1355,9 +1392,11 @@ func update_ip_column(database_id: String, table_id: String, key: String, requir
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnIp
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1382,8 +1421,8 @@ func create_line_column(database_id: String, table_id: String, key: String, requ
         return AppwriteException.new("Invalid type for parameter 'default'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1393,9 +1432,11 @@ func create_line_column(database_id: String, table_id: String, key: String, requ
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnLine
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1423,9 +1464,9 @@ func update_line_column(database_id: String, table_id: String, key: String, requ
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1436,9 +1477,11 @@ func update_line_column(database_id: String, table_id: String, key: String, requ
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnLine
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1470,8 +1513,8 @@ func create_longtext_column(database_id: String, table_id: String, key: String, 
         return AppwriteException.new("Invalid type for parameter 'encrypt'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1485,9 +1528,11 @@ func create_longtext_column(database_id: String, table_id: String, key: String, 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnLongtext
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1514,9 +1559,9 @@ func update_longtext_column(database_id: String, table_id: String, key: String, 
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1526,9 +1571,11 @@ func update_longtext_column(database_id: String, table_id: String, key: String, 
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnLongtext
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1560,8 +1607,8 @@ func create_mediumtext_column(database_id: String, table_id: String, key: String
         return AppwriteException.new("Invalid type for parameter 'encrypt'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1575,9 +1622,11 @@ func create_mediumtext_column(database_id: String, table_id: String, key: String
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnMediumtext
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1604,9 +1653,9 @@ func update_mediumtext_column(database_id: String, table_id: String, key: String
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1616,9 +1665,11 @@ func update_mediumtext_column(database_id: String, table_id: String, key: String
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnMediumtext
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1643,8 +1694,8 @@ func create_point_column(database_id: String, table_id: String, key: String, req
         return AppwriteException.new("Invalid type for parameter 'default'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1654,9 +1705,11 @@ func create_point_column(database_id: String, table_id: String, key: String, req
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnPoint
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1684,9 +1737,9 @@ func update_point_column(database_id: String, table_id: String, key: String, req
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1697,9 +1750,11 @@ func update_point_column(database_id: String, table_id: String, key: String, req
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnPoint
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1724,8 +1779,8 @@ func create_polygon_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'default'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1735,9 +1790,11 @@ func create_polygon_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnPolygon
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1765,9 +1822,9 @@ func update_polygon_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1778,9 +1835,11 @@ func update_polygon_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnPolygon
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1815,8 +1874,8 @@ func create_relationship_column(database_id: String, table_id: String, related_t
         return AppwriteException.new("Invalid type for parameter 'on_delete'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['relatedTableId'] = related_table_id
@@ -1832,9 +1891,11 @@ func create_relationship_column(database_id: String, table_id: String, related_t
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnRelationship
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1869,8 +1930,8 @@ func create_string_column(database_id: String, table_id: String, key: String, si
         return AppwriteException.new("Invalid type for parameter 'encrypt'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/string'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1885,9 +1946,11 @@ func create_string_column(database_id: String, table_id: String, key: String, si
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnString
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -1919,9 +1982,9 @@ func update_string_column(database_id: String, table_id: String, key: String, re
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/string/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -1933,9 +1996,11 @@ func update_string_column(database_id: String, table_id: String, key: String, re
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnString
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -1967,8 +2032,8 @@ func create_text_column(database_id: String, table_id: String, key: String, requ
         return AppwriteException.new("Invalid type for parameter 'encrypt'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -1982,9 +2047,11 @@ func create_text_column(database_id: String, table_id: String, key: String, requ
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnText
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2011,9 +2078,9 @@ func update_text_column(database_id: String, table_id: String, key: String, requ
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -2023,9 +2090,11 @@ func update_text_column(database_id: String, table_id: String, key: String, requ
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnText
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2054,8 +2123,8 @@ func create_url_column(database_id: String, table_id: String, key: String, requi
         return AppwriteException.new("Invalid type for parameter 'array'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/url'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -2067,9 +2136,11 @@ func create_url_column(database_id: String, table_id: String, key: String, requi
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnUrl
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2096,9 +2167,9 @@ func update_url_column(database_id: String, table_id: String, key: String, requi
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/url/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -2108,9 +2179,11 @@ func update_url_column(database_id: String, table_id: String, key: String, requi
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnUrl
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2143,8 +2216,8 @@ func create_varchar_column(database_id: String, table_id: String, key: String, s
         return AppwriteException.new("Invalid type for parameter 'encrypt'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -2159,9 +2232,11 @@ func create_varchar_column(database_id: String, table_id: String, key: String, s
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnVarchar
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2191,9 +2266,9 @@ func update_varchar_column(database_id: String, table_id: String, key: String, r
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     _params['required'] = required
@@ -2205,9 +2280,11 @@ func update_varchar_column(database_id: String, table_id: String, key: String, r
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnVarchar
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2228,16 +2305,18 @@ func get_column(database_id: String, table_id: String, key: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnBoolean
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2258,9 +2337,9 @@ func delete_column(database_id: String, table_id: String, key: String) -> Varian
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
 
@@ -2269,6 +2348,7 @@ func delete_column(database_id: String, table_id: String, key: String) -> Varian
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -2296,9 +2376,9 @@ func update_relationship_column(database_id: String, table_id: String, key: Stri
         return AppwriteException.new("Invalid type for parameter 'new_key'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}/relationship'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
     if on_delete != null:
@@ -2308,9 +2388,11 @@ func update_relationship_column(database_id: String, table_id: String, key: Stri
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnRelationship
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2336,8 +2418,8 @@ func list_indexes(database_id: String, table_id: String, queries: Variant = null
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/indexes'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -2346,9 +2428,11 @@ func list_indexes(database_id: String, table_id: String, queries: Variant = null
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnIndexList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2378,8 +2462,8 @@ func create_index(database_id: String, table_id: String, key: String, xtype: Str
         return AppwriteException.new("Invalid type for parameter 'lengths'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/indexes'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['key'] = key
@@ -2392,9 +2476,11 @@ func create_index(database_id: String, table_id: String, key: String, xtype: Str
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnIndex
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2415,16 +2501,18 @@ func get_index(database_id: String, table_id: String, key: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteColumnIndex
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2445,9 +2533,9 @@ func delete_index(database_id: String, table_id: String, key: String) -> Variant
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{key}', str(key))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{key}', key.uri_encode())
 
     var _params := {}
 
@@ -2457,40 +2545,8 @@ func delete_index(database_id: String, table_id: String, key: String) -> Variant
 
     var model_script = null
 
+
     return await _call('delete', _path, _headers, _params, model_script)
-
-
-## Get the table activity logs list by its unique ID.[br]
-##[br]
-## Parameters:[br]
-## - [param database_id] [String]: Database ID.[br]
-## - [param table_id] [String]: Table ID.[br]
-## - [param queries] [Array]: Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset[br]
-##[br]
-## Returns:[br]
-## - [AppwriteLogList] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func list_table_logs(database_id: String, table_id: String, queries: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if queries != null and not queries is Array:
-        return AppwriteException.new("Invalid type for parameter 'queries'. Expected Array.", 0, "argument_error", "")
-
-    var _path := '/tablesdb/{databaseId}/tables/{tableId}/logs'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-
-    var _params := {}
-    if queries != null:
-        _params['queries'] = queries
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteLogList
-
-    return await _call('get', _path, _headers, _params, model_script)
 
 
 ## Get a list of all the user&#039;s rows in a given table. You can use the query params to filter your results.[br]
@@ -2520,8 +2576,8 @@ func list_rows(database_id: String, table_id: String, queries: Variant = null, t
         return AppwriteException.new("Invalid type for parameter 'ttl'. Expected int.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -2534,9 +2590,11 @@ func list_rows(database_id: String, table_id: String, queries: Variant = null, t
         _params['ttl'] = ttl
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRowList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2564,8 +2622,8 @@ func create_row(database_id: String, table_id: String, row_id: String, data: Dic
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['rowId'] = row_id
@@ -2577,9 +2635,11 @@ func create_row(database_id: String, table_id: String, row_id: String, data: Dic
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRow
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2603,8 +2663,8 @@ func create_rows(database_id: String, table_id: String, rows: Array, transaction
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['rows'] = rows
@@ -2613,9 +2673,11 @@ func create_rows(database_id: String, table_id: String, rows: Array, transaction
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRowList
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -2640,8 +2702,8 @@ func upsert_rows(database_id: String, table_id: String, rows: Array, transaction
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     _params['rows'] = rows
@@ -2650,9 +2712,11 @@ func upsert_rows(database_id: String, table_id: String, rows: Array, transaction
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRowList
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -2681,8 +2745,8 @@ func update_rows(database_id: String, table_id: String, data: Variant = null, qu
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     if data != null:
@@ -2694,9 +2758,11 @@ func update_rows(database_id: String, table_id: String, data: Variant = null, qu
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRowList
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2722,8 +2788,8 @@ func delete_rows(database_id: String, table_id: String, queries: Variant = null,
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -2733,9 +2799,11 @@ func delete_rows(database_id: String, table_id: String, queries: Variant = null,
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRowList
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -2762,9 +2830,9 @@ func get_row(database_id: String, table_id: String, row_id: String, queries: Var
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{rowId}', str(row_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{rowId}', row_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -2773,9 +2841,11 @@ func get_row(database_id: String, table_id: String, row_id: String, queries: Var
         _params['transactionId'] = transaction_id
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRow
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -2805,9 +2875,9 @@ func upsert_row(database_id: String, table_id: String, row_id: String, data: Var
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{rowId}', str(row_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{rowId}', row_id.uri_encode())
 
     var _params := {}
     if data != null:
@@ -2819,9 +2889,11 @@ func upsert_row(database_id: String, table_id: String, row_id: String, data: Var
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRow
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -2851,9 +2923,9 @@ func update_row(database_id: String, table_id: String, row_id: String, data: Var
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{rowId}', str(row_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{rowId}', row_id.uri_encode())
 
     var _params := {}
     if data != null:
@@ -2865,9 +2937,11 @@ func update_row(database_id: String, table_id: String, row_id: String, data: Var
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRow
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -2891,9 +2965,9 @@ func delete_row(database_id: String, table_id: String, row_id: String, transacti
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{rowId}', str(row_id))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{rowId}', row_id.uri_encode())
 
     var _params := {}
     if transaction_id != null:
@@ -2905,42 +2979,8 @@ func delete_row(database_id: String, table_id: String, row_id: String, transacti
 
     var model_script = null
 
+
     return await _call('delete', _path, _headers, _params, model_script)
-
-
-## Get the row activity logs list by its unique ID.[br]
-##[br]
-## Parameters:[br]
-## - [param database_id] [String]: Database ID.[br]
-## - [param table_id] [String]: Table ID.[br]
-## - [param row_id] [String]: Row ID.[br]
-## - [param queries] [Array]: Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset[br]
-##[br]
-## Returns:[br]
-## - [AppwriteLogList] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func list_row_logs(database_id: String, table_id: String, row_id: String, queries: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if queries != null and not queries is Array:
-        return AppwriteException.new("Invalid type for parameter 'queries'. Expected Array.", 0, "argument_error", "")
-
-    var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/logs'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{rowId}', str(row_id))
-
-    var _params := {}
-    if queries != null:
-        _params['queries'] = queries
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteLogList
-
-    return await _call('get', _path, _headers, _params, model_script)
 
 
 ## Decrement a specific column of a row by a given value.[br]
@@ -2969,10 +3009,10 @@ func decrement_row_column(database_id: String, table_id: String, row_id: String,
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/decrement'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{rowId}', str(row_id))
-    _path = _path.replace('{column}', str(column))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{rowId}', row_id.uri_encode())
+    _path = _path.replace('{column}', column.uri_encode())
 
     var _params := {}
     if value != null:
@@ -2984,9 +3024,11 @@ func decrement_row_column(database_id: String, table_id: String, row_id: String,
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRow
+
 
     return await _call('patch', _path, _headers, _params, model_script)
 
@@ -3017,10 +3059,10 @@ func increment_row_column(database_id: String, table_id: String, row_id: String,
         return AppwriteException.new("Invalid type for parameter 'transaction_id'. Expected String.", 0, "argument_error", "")
 
     var _path := '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/increment'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-    _path = _path.replace('{rowId}', str(row_id))
-    _path = _path.replace('{column}', str(column))
+    _path = _path.replace('{databaseId}', database_id.uri_encode())
+    _path = _path.replace('{tableId}', table_id.uri_encode())
+    _path = _path.replace('{rowId}', row_id.uri_encode())
+    _path = _path.replace('{column}', column.uri_encode())
 
     var _params := {}
     if value != null:
@@ -3032,73 +3074,11 @@ func increment_row_column(database_id: String, table_id: String, row_id: String,
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteRow
 
+
     return await _call('patch', _path, _headers, _params, model_script)
-
-
-## Get usage metrics and statistics for a table. Returning the total number of rows. The response includes both current totals and historical data over time. Use the optional range parameter to specify the time window for historical data: 24h (last 24 hours), 30d (last 30 days), or 90d (last 90 days). If not specified, range defaults to 30 days.[br]
-##[br]
-## Parameters:[br]
-## - [param database_id] [String]: Database ID.[br]
-## - [param table_id] [String]: Table ID.[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageTable] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_table_usage(database_id: String, table_id: String, xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/tablesdb/{databaseId}/tables/{tableId}/usage'
-    _path = _path.replace('{databaseId}', str(database_id))
-    _path = _path.replace('{tableId}', str(table_id))
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageTable
-
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## Get usage metrics and statistics for a database. You can view the total number of tables, rows, and storage usage. The response includes both current totals and historical data over time. Use the optional range parameter to specify the time window for historical data: 24h (last 24 hours), 30d (last 30 days), or 90d (last 90 days). If not specified, range defaults to 30 days.[br]
-##[br]
-## Parameters:[br]
-## - [param database_id] [String]: Database ID.[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageDatabase] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_usage(database_id: String, xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/tablesdb/{databaseId}/usage'
-    _path = _path.replace('{databaseId}', str(database_id))
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageDatabase
-
-    return await _call('get', _path, _headers, _params, model_script)
 

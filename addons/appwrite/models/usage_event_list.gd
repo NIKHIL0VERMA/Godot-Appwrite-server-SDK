@@ -1,15 +1,15 @@
 class_name AppwriteUsageEventList
 extends RefCounted
-## Usage events list[br]
+## usageEventList[br]
 
 
 const _FIELD_MAP := {
-    "total": "total",
-    "events": "events",
+    "interval": "interval",
+    "metrics": "metrics",
 }
 
-var total: int ## Total number of events that matched your query.
-var events: Array ## List of events.
+var interval: String ## Time interval size (1h or 1d). Empty when the request omits `interval` — points then carry the request end time as their as-of marker.
+var metrics: Array ## One entry per requested metric, each carrying its own points[] time series (sums per bucket / dimension over time).
 
 ## Convert dictionary to model
 static func from_dict(dict: Dictionary):
@@ -24,7 +24,7 @@ static func from_dict(dict: Dictionary):
         
         var value = dict.get(raw_key)
 
-        if key == "events" and value is Array:
+        if key == "metrics" and value is Array:
             m.set(key, value)
             continue
         if value != null:

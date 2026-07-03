@@ -34,9 +34,11 @@ func list_buckets(queries: Variant = null, search: Variant = null, total: Varian
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBucketList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -108,9 +110,11 @@ func create_bucket(bucket_id: String, xname: String, permissions: Variant = null
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBucket
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -129,14 +133,16 @@ func get_bucket(bucket_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/storage/buckets/{bucketId}'
-    _path = _path.replace('{bucketId}', str(bucket_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBucket
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -183,7 +189,7 @@ func update_bucket(bucket_id: String, xname: String, permissions: Variant = null
         return AppwriteException.new("Invalid type for parameter 'transformations'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/storage/buckets/{bucketId}'
-    _path = _path.replace('{bucketId}', str(bucket_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
 
     var _params := {}
     _params['name'] = xname
@@ -208,9 +214,11 @@ func update_bucket(bucket_id: String, xname: String, permissions: Variant = null
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteBucket
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -229,7 +237,7 @@ func delete_bucket(bucket_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/storage/buckets/{bucketId}'
-    _path = _path.replace('{bucketId}', str(bucket_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
 
     var _params := {}
 
@@ -238,6 +246,7 @@ func delete_bucket(bucket_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -265,7 +274,7 @@ func list_files(bucket_id: String, queries: Variant = null, search: Variant = nu
         return AppwriteException.new("Invalid type for parameter 'total'. Expected bool.", 0, "argument_error", "")
 
     var _path := '/storage/buckets/{bucketId}/files'
-    _path = _path.replace('{bucketId}', str(bucket_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
 
     var _params := {}
     if queries != null:
@@ -276,9 +285,11 @@ func list_files(bucket_id: String, queries: Variant = null, search: Variant = nu
         _params['total'] = total
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFileList
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -309,7 +320,7 @@ func create_file(bucket_id: String, file_id: String, file: AppwriteInputFile, pe
         return AppwriteException.new("Invalid type for parameter 'permissions'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/storage/buckets/{bucketId}/files'
-    _path = _path.replace('{bucketId}', str(bucket_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
 
     var _params := {}
     _params['fileId'] = file_id
@@ -319,9 +330,11 @@ func create_file(bucket_id: String, file_id: String, file: AppwriteInputFile, pe
 
     var _headers := {
         'content-type': 'multipart/form-data',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFile
+
 
     return await _call('post', _path, _headers, _params, model_script)
 
@@ -341,15 +354,17 @@ func get_file(bucket_id: String, file_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/storage/buckets/{bucketId}/files/{fileId}'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-    _path = _path.replace('{fileId}', str(file_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
+    _path = _path.replace('{fileId}', file_id.uri_encode())
 
     var _params := {}
 
     var _headers := {
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFile
+
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -375,8 +390,8 @@ func update_file(bucket_id: String, file_id: String, xname: Variant = null, perm
         return AppwriteException.new("Invalid type for parameter 'permissions'. Expected Array.", 0, "argument_error", "")
 
     var _path := '/storage/buckets/{bucketId}/files/{fileId}'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-    _path = _path.replace('{fileId}', str(file_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
+    _path = _path.replace('{fileId}', file_id.uri_encode())
 
     var _params := {}
     if xname != null:
@@ -386,9 +401,11 @@ func update_file(bucket_id: String, file_id: String, xname: Variant = null, perm
 
     var _headers := {
         'content-type': 'application/json',
+        'accept': 'application/json',
     }
 
     var model_script = AppwriteFile
+
 
     return await _call('put', _path, _headers, _params, model_script)
 
@@ -408,8 +425,8 @@ func delete_file(bucket_id: String, file_id: String) -> Variant :
     # Runtime type checking, GDScript typed vars don't support null or optional
 
     var _path := '/storage/buckets/{bucketId}/files/{fileId}'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-    _path = _path.replace('{fileId}', str(file_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
+    _path = _path.replace('{fileId}', file_id.uri_encode())
 
     var _params := {}
 
@@ -418,6 +435,7 @@ func delete_file(bucket_id: String, file_id: String) -> Variant :
     }
 
     var model_script = null
+
 
     return await _call('delete', _path, _headers, _params, model_script)
 
@@ -440,17 +458,22 @@ func get_file_download(bucket_id: String, file_id: String, token: Variant = null
         return AppwriteException.new("Invalid type for parameter 'token'. Expected String.", 0, "argument_error", "")
 
     var _path := '/storage/buckets/{bucketId}/files/{fileId}/download'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-    _path = _path.replace('{fileId}', str(file_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
+    _path = _path.replace('{fileId}', file_id.uri_encode())
 
     var _params := {}
     if token != null:
         _params['token'] = token
 
     var _headers := {
+        'accept': '*/*',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -506,8 +529,8 @@ func get_file_preview(bucket_id: String, file_id: String, width: Variant = null,
         return AppwriteException.new("Invalid type for parameter 'token'. Expected String.", 0, "argument_error", "")
 
     var _path := '/storage/buckets/{bucketId}/files/{fileId}/preview'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-    _path = _path.replace('{fileId}', str(file_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
+    _path = _path.replace('{fileId}', file_id.uri_encode())
 
     var _params := {}
     if width != null:
@@ -536,9 +559,14 @@ func get_file_preview(bucket_id: String, file_id: String, width: Variant = null,
         _params['token'] = token
 
     var _headers := {
+        'accept': 'image/*',
     }
 
     var model_script = null
+
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
@@ -561,79 +589,22 @@ func get_file_view(bucket_id: String, file_id: String, token: Variant = null) ->
         return AppwriteException.new("Invalid type for parameter 'token'. Expected String.", 0, "argument_error", "")
 
     var _path := '/storage/buckets/{bucketId}/files/{fileId}/view'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-    _path = _path.replace('{fileId}', str(file_id))
+    _path = _path.replace('{bucketId}', bucket_id.uri_encode())
+    _path = _path.replace('{fileId}', file_id.uri_encode())
 
     var _params := {}
     if token != null:
         _params['token'] = token
 
     var _headers := {
+        'accept': '*/*',
     }
 
     var model_script = null
 
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## Get usage metrics and statistics for all buckets in the project. You can view the total number of buckets, files, storage usage. The response includes both current totals and historical data over time. Use the optional range parameter to specify the time window for historical data: 24h (last 24 hours), 30d (last 30 days), or 90d (last 90 days). If not specified, range defaults to 30 days.[br]
-##[br]
-##[br]
-## Parameters:[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageStorage] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_usage(xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/storage/usage'
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageStorage
-
-    return await _call('get', _path, _headers, _params, model_script)
-
-
-## Get usage metrics and statistics a specific bucket in the project. You can view the total number of files, storage usage. The response includes both current totals and historical data over time. Use the optional range parameter to specify the time window for historical data: 24h (last 24 hours), 30d (last 30 days), or 90d (last 90 days). If not specified, range defaults to 30 days.[br]
-##[br]
-##[br]
-## Parameters:[br]
-## - [param bucket_id] [String]: Bucket ID.[br]
-## - [param xrange] [String]: Date range.[br]
-##[br]
-## Returns:[br]
-## - [AppwriteUsageBuckets] on success.[br]
-##[br]
-## Errors:[br]
-## - Returns error data as [member AppwriteException].
-func get_bucket_usage(bucket_id: String, xrange: Variant = null) -> Variant :
-    # Runtime type checking, GDScript typed vars don't support null or optional
-    if xrange != null and not xrange is String:
-        return AppwriteException.new("Invalid type for parameter 'xrange'. Expected String.", 0, "argument_error", "")
-
-    var _path := '/storage/{bucketId}/usage'
-    _path = _path.replace('{bucketId}', str(bucket_id))
-
-    var _params := {}
-    if xrange != null:
-        _params['range'] = xrange
-
-    var _headers := {
-    }
-
-    var model_script = AppwriteUsageBuckets
+    _params['project'] = client.get_headers()['x-appwrite-project']
+    _params['session'] = client.get_headers()['x-appwrite-session']
+    _params['impersonateuserid'] = client.get_headers()['x-appwrite-impersonate-user-id']
 
     return await _call('get', _path, _headers, _params, model_script)
 
