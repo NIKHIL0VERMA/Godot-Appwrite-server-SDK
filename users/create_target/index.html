@@ -1,0 +1,5184 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+        <title>Create target - Appwrite Server SDK for Godot 4</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <link rel="canonical" href="https://nikhil0verma.github.io/godot-appwrite-server-sdk/users/create_target/">
+        <meta name="author" content="Nikhil Verma, nikhil2003verma@gmail.com">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../../assets/css/mkdocs.min.css">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+            <img class="logo" src="../../assets/img/icon.svg" height="150px">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">Appwrite Server SDK for Godot 4</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Introduction
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../../getting_started/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Getting Started
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../../configuration/"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Configuration
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    Account
+                </a>
+                <div class="collapse" id="account-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_anonymous_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create anonymous session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_email_password_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create email password session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_email_token/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create email token
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_email_verification/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create email verification
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_jwt/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create jwt
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_magic_url_token/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create magic url token
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_mfa_authenticator/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create mfa authenticator
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_mfa_challenge/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create mfa challenge
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_mfa_recovery_codes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create mfa recovery codes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_o_auth2_token/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create o auth2 token
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_phone_token/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create phone token
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_phone_verification/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create phone verification
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_recovery/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create recovery
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/create_verification/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create verification
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/delete_identity/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete identity
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/delete_mfa_authenticator/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete mfa authenticator
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/delete_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/delete_sessions/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete sessions
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/get_mfa_recovery_codes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get mfa recovery codes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/get_prefs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get prefs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/get_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/list_identities/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List identities
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/list_logs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List logs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/list_mfa_factors/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List mfa factors
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/list_sessions/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List sessions
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_email/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update email
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_email_verification/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update email verification
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_magic_url_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update magic url session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_mfa/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mfa
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_mfa_authenticator/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mfa authenticator
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_mfa_challenge/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mfa challenge
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_mfa_recovery_codes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mfa recovery codes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_name/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update name
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_password/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update password
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_phone/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update phone
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_phone_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update phone session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_phone_verification/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update phone verification
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_prefs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update prefs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_recovery/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update recovery
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_status/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update status
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../account/update_verification/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update verification
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#activities-collapse" aria-expanded="false">
+                    Activities
+                </a>
+                <div class="collapse" id="activities-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../activities/get_event/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get event
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../activities/list_events/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List events
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#advisor-collapse" aria-expanded="false">
+                    Advisor
+                </a>
+                <div class="collapse" id="advisor-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../advisor/delete_report/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete report
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../advisor/get_insight/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get insight
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../advisor/get_report/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get report
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../advisor/list_insights/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List insights
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../advisor/list_reports/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List reports
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#apps-collapse" aria-expanded="false">
+                    Apps
+                </a>
+                <div class="collapse" id="apps-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/create_secret/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create secret
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/delete_secret/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete secret
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/delete_tokens/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete tokens
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/get_secret/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get secret
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/list_secrets/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List secrets
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/update/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../apps/update_team/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update team
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#avatars-collapse" aria-expanded="false">
+                    Avatars
+                </a>
+                <div class="collapse" id="avatars-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../avatars/get_browser/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get browser
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../avatars/get_credit_card/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get credit card
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../avatars/get_favicon/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get favicon
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../avatars/get_flag/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get flag
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../avatars/get_image/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get image
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../avatars/get_initials/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get initials
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../avatars/get_qr/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get qr
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../avatars/get_screenshot/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get screenshot
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#backups-collapse" aria-expanded="false">
+                    Backups
+                </a>
+                <div class="collapse" id="backups-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/create_archive/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create archive
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/create_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/create_restoration/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create restoration
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/delete_archive/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete archive
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/delete_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/get_archive/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get archive
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/get_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/get_restoration/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get restoration
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/list_archives/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List archives
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/list_policies/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List policies
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/list_restorations/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List restorations
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../backups/update_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update policy
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#databases-collapse" aria-expanded="false">
+                    Databases
+                </a>
+                <div class="collapse" id="databases-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_big_int_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create big int attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_boolean_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create boolean attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_collection/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create collection
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_datetime_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create datetime attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_document/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create document
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_documents/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create documents
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_email_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create email attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_enum_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create enum attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_float_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create float attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_index/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create index
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_integer_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create integer attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_ip_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create ip attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_line_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create line attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_longtext_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create longtext attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_mediumtext_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create mediumtext attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_operations/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create operations
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_point_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create point attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_polygon_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create polygon attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_relationship_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create relationship attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_string_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create string attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_text_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create text attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_transaction/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create transaction
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_url_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create url attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/create_varchar_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create varchar attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/decrement_document_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Decrement document attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/delete_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/delete_collection/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete collection
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/delete_document/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete document
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/delete_documents/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete documents
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/delete_index/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete index
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/delete_transaction/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete transaction
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/get_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/get_collection/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get collection
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/get_document/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get document
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/get_index/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get index
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/get_transaction/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get transaction
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/increment_document_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Increment document attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/list_attributes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List attributes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/list_collections/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List collections
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/list_documents/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List documents
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/list_indexes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List indexes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/list_transactions/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List transactions
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_big_int_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update big int attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_boolean_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update boolean attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_collection/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update collection
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_datetime_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update datetime attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_document/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update document
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_documents/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update documents
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_email_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update email attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_enum_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update enum attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_float_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update float attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_integer_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update integer attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_ip_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update ip attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_line_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update line attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_longtext_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update longtext attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_mediumtext_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mediumtext attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_point_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update point attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_polygon_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update polygon attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_relationship_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update relationship attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_string_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update string attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_text_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update text attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_transaction/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update transaction
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_url_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update url attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/update_varchar_attribute/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update varchar attribute
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/upsert_document/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Upsert document
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../databases/upsert_documents/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Upsert documents
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#functions-collapse" aria-expanded="false">
+                    Functions
+                </a>
+                <div class="collapse" id="functions-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/create_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/create_duplicate_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create duplicate deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/create_execution/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create execution
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/create_template_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create template deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/create_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/create_vcs_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create vcs deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/delete_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/delete_execution/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete execution
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/delete_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/get_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/get_deployment_download/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get deployment download
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/get_execution/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get execution
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/get_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/list_deployments/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List deployments
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/list_executions/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List executions
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/list_runtimes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List runtimes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/list_specifications/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List specifications
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/list_variables/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List variables
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/update/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/update_deployment_status/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update deployment status
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/update_function_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update function deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../functions/update_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update variable
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#graphql-collapse" aria-expanded="false">
+                    Graphql
+                </a>
+                <div class="collapse" id="graphql-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../graphql/mutation/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Mutation
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../graphql/query/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Query
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#health-collapse" aria-expanded="false">
+                    Health
+                </a>
+                <div class="collapse" id="health-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_antivirus/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get antivirus
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_audits_db/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get audits db
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_cache/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get cache
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_certificate/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get certificate
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_console_pausing/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get console pausing
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_db/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get db
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_failed_jobs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get failed jobs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_pub_sub/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get pub sub
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_audits/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue audits
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_billing_project_aggregation/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue billing project aggregation
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_billing_team_aggregation/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue billing team aggregation
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_builds/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue builds
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_certificates/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue certificates
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_databases/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue databases
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_deletes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue deletes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_functions/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue functions
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_logs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue logs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_mails/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue mails
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_messaging/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue messaging
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_migrations/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue migrations
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_region_manager/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue region manager
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_stats_resources/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue stats resources
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_threats/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue threats
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_usage/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue usage
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_queue_webhooks/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get queue webhooks
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_storage/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get storage
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_storage_local/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get storage local
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../health/get_time/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get time
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#locale-collapse" aria-expanded="false">
+                    Locale
+                </a>
+                <div class="collapse" id="locale-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../locale/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../locale/list_codes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List codes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../locale/list_continents/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List continents
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../locale/list_countries/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List countries
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../locale/list_countries_eu/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List countries eu
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../locale/list_countries_phones/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List countries phones
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../locale/list_currencies/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List currencies
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../locale/list_languages/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List languages
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#messaging-collapse" aria-expanded="false">
+                    Messaging
+                </a>
+                <div class="collapse" id="messaging-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_apns_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create apns provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_email/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create email
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_fcm_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create fcm provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_mailgun_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create mailgun provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_msg91_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create msg91 provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_push/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create push
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_resend_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create resend provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_sendgrid_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create sendgrid provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_ses_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create ses provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_sms/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create sms
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_smtp_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create smtp provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_subscriber/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create subscriber
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_telesign_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create telesign provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_textmagic_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create textmagic provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_topic/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create topic
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_twilio_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create twilio provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/create_vonage_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create vonage provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/delete_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/delete_subscriber/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete subscriber
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/delete_topic/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete topic
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/get_message/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get message
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/get_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/get_subscriber/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get subscriber
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/get_topic/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get topic
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_message_logs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List message logs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_messages/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List messages
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_provider_logs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List provider logs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_providers/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List providers
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_subscriber_logs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List subscriber logs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_subscribers/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List subscribers
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_targets/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List targets
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_topic_logs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List topic logs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/list_topics/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List topics
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_apns_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update apns provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_email/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update email
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_fcm_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update fcm provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_mailgun_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mailgun provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_msg91_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update msg91 provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_push/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update push
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_resend_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update resend provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_sendgrid_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update sendgrid provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_ses_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update ses provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_sms/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update sms
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_smtp_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update smtp provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_telesign_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update telesign provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_textmagic_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update textmagic provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_topic/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update topic
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_twilio_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update twilio provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../messaging/update_vonage_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update vonage provider
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#oauth2-collapse" aria-expanded="false">
+                    Oauth2
+                </a>
+                <div class="collapse" id="oauth2-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../oauth2/approve/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Approve
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../oauth2/authorize/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Authorize
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../oauth2/create_device_authorization/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create device authorization
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../oauth2/create_grant/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create grant
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../oauth2/create_token/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create token
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../oauth2/get_grant/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get grant
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../oauth2/reject/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Reject
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../oauth2/revoke/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Revoke
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#organization-collapse" aria-expanded="false">
+                    Organization
+                </a>
+                <div class="collapse" id="organization-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/create_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/create_project/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create project
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/delete_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/delete_project/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete project
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/get_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/get_project/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get project
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/list_keys/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List keys
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/list_projects/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List projects
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/update_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../organization/update_project/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update project
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#presences-collapse" aria-expanded="false">
+                    Presences
+                </a>
+                <div class="collapse" id="presences-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../presences/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../presences/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../presences/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../presences/update/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../presences/upsert/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Upsert
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#project-collapse" aria-expanded="false">
+                    Project
+                </a>
+                <div class="collapse" id="project-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_android_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create android platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_apple_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create apple platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_ephemeral_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create ephemeral key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_linux_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create linux platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_mock_phone/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create mock phone
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_smtp_test/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create smtp test
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_web_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create web platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/create_windows_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create windows platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/delete_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/delete_mock_phone/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete mock phone
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/delete_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/delete_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/get_email_template/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get email template
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/get_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/get_mock_phone/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get mock phone
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/get_o_auth2_provider/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get o auth2 provider
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/get_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/get_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/get_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/list_email_templates/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List email templates
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/list_keys/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List keys
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/list_mock_phones/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List mock phones
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/list_o_auth2_providers/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List o auth2 providers
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/list_platforms/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List platforms
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/list_policies/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List policies
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/list_variables/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List variables
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_android_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update android platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_apple_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update apple platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_auth_method/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update auth method
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_deny_aliased_email_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update deny aliased email policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_deny_corporate_email_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update deny corporate email policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_deny_disposable_email_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update deny disposable email policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_deny_free_email_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update deny free email policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_email_template/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update email template
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_key/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update key
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_labels/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update labels
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_linux_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update linux platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_membership_privacy_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update membership privacy policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_mock_phone/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mock phone
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_amazon/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 amazon
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_apple/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 apple
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_auth0/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 auth0
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_authentik/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 authentik
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_autodesk/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 autodesk
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_bitbucket/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 bitbucket
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_bitly/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 bitly
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_box/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 box
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_dailymotion/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 dailymotion
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_discord/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 discord
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_disqus/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 disqus
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_dropbox/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 dropbox
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_etsy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 etsy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_facebook/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 facebook
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_figma/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 figma
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_fusion_auth/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 fusion auth
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_git_hub/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 git hub
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_gitlab/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 gitlab
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_google/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 google
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_keycloak/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 keycloak
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_kick/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 kick
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_linkedin/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 linkedin
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_microsoft/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 microsoft
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_notion/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 notion
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_oidc/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 oidc
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_okta/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 okta
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_paypal/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 paypal
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_paypal_sandbox/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 paypal sandbox
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_podio/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 podio
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_salesforce/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 salesforce
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_server/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 server
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_slack/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 slack
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_spotify/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 spotify
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_stripe/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 stripe
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_tradeshift/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 tradeshift
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_tradeshift_sandbox/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 tradeshift sandbox
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_twitch/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 twitch
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_word_press/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 word press
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_x/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 x
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_yahoo/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 yahoo
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_yandex/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 yandex
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_zoho/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 zoho
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_o_auth2_zoom/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update o auth2 zoom
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_password_dictionary_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update password dictionary policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_password_history_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update password history policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_password_personal_data_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update password personal data policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_password_strength_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update password strength policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_protocol/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update protocol
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_service/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update service
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_session_alert_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update session alert policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_session_duration_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update session duration policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_session_invalidation_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update session invalidation policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_session_limit_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update session limit policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_smtp/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update smtp
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_user_limit_policy/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update user limit policy
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_web_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update web platform
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../project/update_windows_platform/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update windows platform
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#proxy-collapse" aria-expanded="false">
+                    Proxy
+                </a>
+                <div class="collapse" id="proxy-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../proxy/create_api_rule/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create api rule
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../proxy/create_function_rule/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create function rule
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../proxy/create_redirect_rule/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create redirect rule
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../proxy/create_site_rule/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create site rule
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../proxy/delete_rule/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete rule
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../proxy/get_rule/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get rule
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../proxy/list_rules/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List rules
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../proxy/update_rule_status/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update rule status
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#sites-collapse" aria-expanded="false">
+                    Sites
+                </a>
+                <div class="collapse" id="sites-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/create_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/create_duplicate_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create duplicate deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/create_template_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create template deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/create_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/create_vcs_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create vcs deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/delete_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/delete_log/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete log
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/delete_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/get_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/get_deployment_download/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get deployment download
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/get_log/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get log
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/get_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get variable
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/list_deployments/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List deployments
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/list_frameworks/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List frameworks
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/list_logs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List logs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/list_specifications/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List specifications
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/list_variables/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List variables
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/update/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/update_deployment_status/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update deployment status
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/update_site_deployment/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update site deployment
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../sites/update_variable/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update variable
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#storage-collapse" aria-expanded="false">
+                    Storage
+                </a>
+                <div class="collapse" id="storage-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/create_bucket/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create bucket
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/create_file/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create file
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/delete_bucket/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete bucket
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/delete_file/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete file
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/get_bucket/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get bucket
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/get_file/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get file
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/get_file_download/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get file download
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/get_file_preview/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get file preview
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/get_file_view/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get file view
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/list_buckets/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List buckets
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/list_files/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List files
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/update_bucket/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update bucket
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../storage/update_file/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update file
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#tables-db-collapse" aria-expanded="false">
+                    Tables db
+                </a>
+                <div class="collapse" id="tables-db-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_big_int_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create big int column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_boolean_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create boolean column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_datetime_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create datetime column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_email_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create email column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_enum_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create enum column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_float_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create float column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_index/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create index
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_integer_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create integer column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_ip_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create ip column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_line_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create line column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_longtext_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create longtext column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_mediumtext_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create mediumtext column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_operations/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create operations
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_point_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create point column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_polygon_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create polygon column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_relationship_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create relationship column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_row/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create row
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_rows/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create rows
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_string_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create string column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_table/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create table
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_text_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create text column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_transaction/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create transaction
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_url_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create url column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/create_varchar_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create varchar column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/decrement_row_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Decrement row column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/delete_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/delete_index/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete index
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/delete_row/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete row
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/delete_rows/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete rows
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/delete_table/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete table
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/delete_transaction/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete transaction
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/get_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/get_index/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get index
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/get_row/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get row
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/get_table/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get table
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/get_transaction/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get transaction
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/increment_row_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Increment row column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/list_columns/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List columns
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/list_indexes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List indexes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/list_rows/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List rows
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/list_tables/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List tables
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/list_transactions/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List transactions
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_big_int_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update big int column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_boolean_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update boolean column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_datetime_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update datetime column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_email_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update email column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_enum_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update enum column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_float_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update float column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_integer_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update integer column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_ip_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update ip column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_line_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update line column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_longtext_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update longtext column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_mediumtext_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mediumtext column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_point_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update point column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_polygon_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update polygon column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_relationship_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update relationship column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_row/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update row
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_rows/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update rows
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_string_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update string column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_table/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update table
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_text_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update text column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_transaction/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update transaction
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_url_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update url column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/update_varchar_column/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update varchar column
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/upsert_row/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Upsert row
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tables_db/upsert_rows/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Upsert rows
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#teams-collapse" aria-expanded="false">
+                    Teams
+                </a>
+                <div class="collapse" id="teams-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/create_membership/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create membership
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/delete_membership/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete membership
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/get_membership/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get membership
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/get_prefs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get prefs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/list_memberships/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List memberships
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/update_membership/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update membership
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/update_membership_status/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update membership status
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/update_name/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update name
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../teams/update_prefs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update prefs
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#tokens-collapse" aria-expanded="false">
+                    Tokens
+                </a>
+                <div class="collapse" id="tokens-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tokens/create_file_token/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create file token
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tokens/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tokens/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tokens/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../tokens/update/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#usage-collapse" aria-expanded="false">
+                    Usage
+                </a>
+                <div class="collapse" id="usage-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../usage/list_events/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List events
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../usage/list_gauges/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List gauges
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class=" active 
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#users-collapse" aria-expanded="false">
+                    Users
+                </a>
+                <div class="collapse" id="users-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_argon2_user/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create argon2 user
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_bcrypt_user/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create bcrypt user
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_jwt/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create jwt
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_md5_user/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create md5 user
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_mfa_recovery_codes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create mfa recovery codes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_ph_pass_user/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create ph pass user
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_scrypt_modified_user/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create scrypt modified user
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_scrypt_user/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create scrypt user
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_sha_user/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create sha user
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="./"
+            class=" active 
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create target
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../create_token/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create token
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../delete_identity/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete identity
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../delete_mfa_authenticator/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete mfa authenticator
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../delete_session/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete session
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../delete_sessions/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete sessions
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../delete_target/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete target
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../get_mfa_recovery_codes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get mfa recovery codes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../get_prefs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get prefs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../get_target/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get target
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../list_identities/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List identities
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../list_logs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List logs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../list_memberships/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List memberships
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../list_mfa_factors/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List mfa factors
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../list_sessions/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List sessions
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../list_targets/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List targets
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_email/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update email
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_email_verification/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update email verification
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_impersonator/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update impersonator
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_labels/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update labels
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_mfa/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mfa
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_mfa_recovery_codes/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update mfa recovery codes
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_name/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update name
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_password/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update password
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_phone/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update phone
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_phone_verification/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update phone verification
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_prefs/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update prefs
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_status/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update status
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../update_target/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update target
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../.."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#webhooks-collapse" aria-expanded="false">
+                    Webhooks
+                </a>
+                <div class="collapse" id="webhooks-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../../webhooks/create/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Create
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../webhooks/delete/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Delete
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../webhooks/get/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Get
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../webhooks/list/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            List
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../webhooks/update/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../../webhooks/update_secret/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Update secret
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+        <div class="container">
+            <div class="row row-preview">
+                <div class="col">
+                    <a href="../create_sha_user/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="../create_token/"
+                        class="btn-preview drac-btn drac-btn-outline drac-text-white drac-text-cyan-green--hover" style="padding-left: 3%;">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                            
+                                <div class="md-source source-detail">
+    <div class="md-source-repo-icon">
+        <i class="fa fa-github-alt drac-text-white" aria-hidden="true"></i>
+    </div>
+
+    <div class="md-source-repo-url">
+        <a href="https://github.com/NIKHIL0VERMA/Godot-Appwrite-server-SDK"
+            class="md-source drac-anchor drac-text drac-text-white drac-text-cyan-green--hover">
+            Nikhil0Verma/godot-appwrite-server-sdk
+        </a>
+
+        <ul class="md-source-repo-text">
+            <li>
+                <i class="fa fa-tag drac-text-black" aria-hidden="true"></i>
+                <img alt="GitHub tag (latest by date)"
+                    src="https://img.shields.io/github/v/tag/Nikhil0Verma/godot-appwrite-server-sdk?color=white&label=%20&style=flat-square">
+            </li>
+
+            <li>
+                <i class="fa fa-star drac-text-black" aria-hidden="true"></i>
+                <img alt="GitHub Repo stars"
+                    src="https://img.shields.io/github/stars/Nikhil0Verma/godot-appwrite-server-sdk?color=white&label=%20&style=flat-square">
+            </li>
+
+            <li>
+                <i class="fa fa-code-fork drac-text-black" aria-hidden="true"></i>
+                <img alt="GitHub forks"
+                    src="https://img.shields.io/github/forks/Nikhil0Verma/godot-appwrite-server-sdk?color=white&label=%20&style=flat-square">
+            </li>
+        </ul>
+    </div>
+
+</div>
+                            
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h2 id="createtarget">createTarget<a class="headerlink" href="#createtarget" title="Permanent link">&para;</a></h2>
+<p>Create a messaging target.</p>
+<hr />
+<h3 id="usage-example">Usage Example<a class="headerlink" href="#usage-example" title="Permanent link">&para;</a></h3>
+<pre><code class="language-gdscript">extends Node
+
+func _ready():
+    # You can skip setup if you have .env
+    Appwrite.set_endpoint('https://&lt;REGION&gt;.cloud.appwrite.io/v1') # Your API Endpoint
+    Appwrite.set_project('&lt;YOUR_PROJECT_ID&gt;') # Your project ID
+    Appwrite.set_key('&lt;YOUR_API_KEY&gt;') # Your secret API key
+
+    var result = await Appwrite.users.create_target(
+        '&lt;USER_ID&gt;',
+        '&lt;TARGET_ID&gt;',
+        Appwrite.MessagingProviderType.EMAIL,
+        '&lt;IDENTIFIER&gt;',
+        '&lt;PROVIDER_ID&gt;', # optional
+        '&lt;NAME&gt;' # optional
+    )
+
+    if result is AppwriteException:
+        push_error(result.message)
+
+    if result is AppwriteTarget:
+        print(result.to_dict())
+</code></pre>
+<hr /></p>
+    </article>
+</section>
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/Nikhil0Verma" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Copyright © 2026 Nikhil Verma
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '../..';</script>
+        <script src="../../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/js/mkdocs.js"></script>
+			<script src="../../search/main.js" defer></script>
+
+</body>
+
+</html>
