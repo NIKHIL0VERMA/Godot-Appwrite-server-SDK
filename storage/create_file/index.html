@@ -5145,7 +5145,7 @@ func _ready():
     var result = await Appwrite.storage.create_file(
         '&lt;BUCKET_ID&gt;',
         '&lt;FILE_ID&gt;',
-        InputFile.from_path(&quot;file.png&quot;),
+        AppwriteInputFile.from_path(&quot;file.png&quot;),
         [&quot;read(&quot;any&quot;)&quot;] # optional
     )
 

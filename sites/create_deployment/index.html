@@ -5141,7 +5141,7 @@ func _ready():
 
     var result = await Appwrite.sites.create_deployment(
         '&lt;SITE_ID&gt;',
-        InputFile.from_path(&quot;file.png&quot;),
+        AppwriteInputFile.from_path(&quot;file.png&quot;),
         '&lt;INSTALL_COMMAND&gt;', # optional
         '&lt;BUILD_COMMAND&gt;', # optional
         '&lt;OUTPUT_DIRECTORY&gt;', # optional
